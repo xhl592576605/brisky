@@ -1,0 +1,26 @@
+{
+  "name": "@brisky/docs",
+  "version": "0.0.0",
+  "description": "brisky docs",
+  "keywords": [
+    "brisky",
+    "docs"
+  ],
+  "author": "xuhuale <xuhuale@star-net.cn>",
+  "homepage": "https://github.com/xhl592576605/brisky#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xhl592576605/brisky.git"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "bugs": {
+    "url": "https://github.com/xhl592576605/brisky/issues"
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  }
+}
