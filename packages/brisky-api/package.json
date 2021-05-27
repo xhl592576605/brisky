@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@brisky/util": "file:../brisky-util",
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "js-cookie": "^2.2.1"
   }
 }
