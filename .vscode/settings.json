@@ -1,0 +1,17 @@
+{
+  "fileheader.customMade": { //此为头部注释
+    "description": "",
+    "version": "1.0",
+    "autor": "brisky",
+    "email": "592576605@qq.com",
+    "Date": "Do not edit",
+    "lastEditors": "brisky",
+    "LastEditTime": "Do not edit",
+  },
+  "fileheader.cursorMode": { //此为函数注释
+    "description": "",
+    "param": "",
+    "return": "",
+    "author": "brisky"
+  },
+}
