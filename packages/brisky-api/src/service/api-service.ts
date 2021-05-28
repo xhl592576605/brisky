@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-27 19:28:55
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-27 20:56:29
+ * @lastEditTime: 2021-05-28 09:31:16
  */
 
 import _ from 'lodash'
@@ -139,12 +139,14 @@ export default class ApiService {
   getService() {
     let axiosObj = this.axiosObj
     if (!axiosObj) {
-      const { axiosOpt = {} } = this.option
-      axiosObj = axios.create(axiosOpt)
+      const { axiosOpt = {}, beforeSetRequestHeaders, afterSetRequestHeaders } = this.option
+      axiosObj = axios.create(axiosOpt || {})
       // 配置发送请求前的拦截器 可以设置token信息
       axiosObj.interceptors.request.use(
         (config: any) => {
+          this.$dataCheck.$isFunction(beforeSetRequestHeaders) && beforeSetRequestHeaders(config)
           this.setRequestHeaders(config)
+          this.$dataCheck.$isFunction(afterSetRequestHeaders) && beforeSetRequestHeaders(config)
           return config
         },
         (error: any) => {
@@ -186,7 +188,7 @@ export default class ApiService {
       console.warn(`[@brisky/api] api配置例子：\n
         {
             "system": {
-              "system": {
+              "login": {
                 "remark": "login api",
                 "author": "author",
                 "method": "get",

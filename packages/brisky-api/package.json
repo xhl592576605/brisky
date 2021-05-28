@@ -14,7 +14,7 @@
     "lint": "eslint \"src/**\" --fix  --ext .js，.jsx，.ts，.tsx --config .eslintrc.js ",
     "build": "run-p \"build:ts\" build:dts",
     "build:ts": "rollup -c rollup.config.js",
-    "build:dts": "api-extractor run --local --verbose && tail -n +1 src/globalExtensions.ts >> dist/.d.ts "
+    "build:dts": "api-extractor run --local --verbose && tail -n +1 src/globalExtensions.ts >> dist/brisky-api.d.ts "
   },
   "repository": {
     "type": "git",

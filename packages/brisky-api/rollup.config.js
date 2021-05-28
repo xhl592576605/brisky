@@ -10,7 +10,7 @@ const name = pkg.name
 
 const banner = `/*!
   * ${pkg.name} v${pkg.version}
-  * (c) ${new Date().getFullYear()} brisky-package-template
+  * (c) ${new Date().getFullYear()} @brisky/api
   * @license MIT
   */`
 
@@ -106,8 +106,10 @@ function createConfig (format, output, plugins = []) {
   hasTSChecked = true
 
   const external = [
-   'lodash',
-   '@brisky/util'
+    'lodash',
+    'axios',
+    'js-cookie',
+    //'@brisky/util'
   ]
 
   const nodePlugins = [resolve(), commonjs()]
