@@ -1,20 +1,20 @@
 {
-  "name": "@brisky/api",
+  "name": "@brisky/eventbus",
   "version": "0.0.0",
-  "description": "@brisky/api",
-  "main": "dist/brisky-api.cjs.js",
-  "unpkg": "dist/brisky-api.global.js",
-  "jsdelivr": "dist/brisky-api.global.js",
-  "module": "dist/brisky-api.esm-bundler.js",
-  "umd": "dist/brisky-api.umd.js",
-  "types": "dist/brisky-api.d.ts",
-  "outputName": "BriskyApi",
+  "description": "@brisky/eventbus",
+  "main": "dist/brisky-eventbus.cjs.js",
+  "unpkg": "dist/brisky-eventbus.global.js",
+  "jsdelivr": "dist/brisky-eventbus.global.js",
+  "module": "dist/brisky-eventbus.esm-bundler.js",
+  "umd": "dist/brisky-eventbus.umd.js",
+  "types": "dist/brisky-eventbus.d.ts",
+  "outputName": "BriskyEventBus",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**\" --fix  --ext .js，.jsx，.ts，.tsx --config .eslintrc.js ",
     "build": "run-p \"build:ts\" build:dts",
     "build:ts": "rollup -c rollup.config.js",
-    "build:dts": "api-extractor run --local --verbose && tail -n +1 src/globalExtensions.ts >> dist/brisky-api.d.ts "
+    "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-eventbus.d.ts "
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "keywords": [],
   "files": [
     "dist/*.js",
-    "dist/brisky-api.d.ts",
+    "dist/brisky-eventbus.d.ts",
     "README.md"
   ],
   "author": "brisky",
@@ -55,9 +55,5 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5"
   },
-  "dependencies": {
-    "@brisky/util": "file:../brisky-util",
-    "axios": "^0.21.1",
-    "js-cookie": "^2.2.1"
-  }
+  "dependencies": {}
 }
