@@ -1,0 +1,25 @@
+{
+  "system": {
+    "login": {
+      "url": "http://119.23.61.247:6005/permissions/account/login",
+      "author": "brisky",
+      "method": "post",
+      "params": {
+        "sign": "brisky"
+      },
+      "data": {
+        "account": "SuperAdmin",
+        "password": "123456"
+      }
+    },
+    "getmenu": {
+      "url": "http://119.23.61.247:6005/permissions/navigate/getall-navigatetree",
+      "author": "brisky",
+      "method": "get",
+      "certificate": true,
+      "params": {
+        "sign": "brisky"
+      }
+    }
+  }
+}

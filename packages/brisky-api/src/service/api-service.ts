@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-27 19:28:55
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-28 09:31:16
+ * @lastEditTime: 2021-05-30 18:34:40
  */
 
 import _ from 'lodash'
@@ -26,7 +26,7 @@ export default class ApiService {
   /**
    *服务配置
    */
-  serviceConfigs: Object = {}
+  public readonly serviceConfigs: Object = {}
 
   constructor(option: ApiServiceOpt) {
     this.$dataCheck = new DataCheck()
@@ -146,7 +146,7 @@ export default class ApiService {
         (config: any) => {
           this.$dataCheck.$isFunction(beforeSetRequestHeaders) && beforeSetRequestHeaders(config)
           this.setRequestHeaders(config)
-          this.$dataCheck.$isFunction(afterSetRequestHeaders) && beforeSetRequestHeaders(config)
+          this.$dataCheck.$isFunction(afterSetRequestHeaders) && afterSetRequestHeaders(config)
           return config
         },
         (error: any) => {
@@ -254,16 +254,16 @@ export default class ApiService {
   * 取消接口请求
   */
   $cancelFetchApi(apiKey: string) {
-    const { apiCancelToken, $dataCheck } = this
+    const { apiCancelToken = {}, $dataCheck } = this
     let cancelFunc = {}
-    if ($dataCheck.$isString(apiKey) && $dataCheck.$isObject(apiCancelToken[apiKey])) {
+    if ($dataCheck.$isString(apiKey) && $dataCheck.$isFunction(apiCancelToken[apiKey])) {
       cancelFunc[apiKey] = apiCancelToken[apiKey]
     } else {
       cancelFunc = apiCancelToken
     }
     for (var funcKey in cancelFunc) {
-      if ($dataCheck.$isObject(apiCancelToken[apiKey])) {
-        cancelFunc[funcKey].abort()
+      if ($dataCheck.$isFunction(cancelFunc[funcKey])) {
+        cancelFunc[funcKey]()
       }
       apiCancelToken[funcKey] = null
     }

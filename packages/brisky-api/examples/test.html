@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+
+<body>
+  <div id="html"></div>
+</body>
+<script src="./js/lodash/lodash.min.js"></script>
+<script src="./js/axios/axios.min.js"></script>
+<script src="./js/js-cookie//js.cookie.js"></script>
+<script src="../dist/brisky-api.umd.js"></script>
+<!--请在@brisky/api包的根目录用http-server运行，因为直接访问Cookies不起作用-->
+<script type="module">
+  const ApiService=BriskyApi.ApiService
+  const apiService=new ApiService({
+    debug:true,
+    // 这边可以使用路径请求，也可以直接对象
+    api:'./config/api.json',
+    // api:{
+    //   system:{
+    //     login:{
+    //       url:'http://119.23.61.247:6005/permissions/account/login',
+    //       author:'brisky',
+    //       method:'post',
+    //       params:{
+    //         sign:'brisky'
+    //       },
+    //       data:{
+    //         account: 'SuperAdmin',
+	  //         password: '123456'
+    //       }
+    //     },
+    //     getmenu:{
+    //       url:'http://119.23.61.247:6005/permissions/navigate/getall-navigatetree',
+    //       author:'brisky',
+    //       method:'get',
+    //       certificate:true, // 需要授权token
+    //       params:{
+    //         sign:'brisky'
+    //       }
+    //     }
+    //   }
+    // },
+    //可在这切换获取token方式
+   // tokenKey:'token_key'
+   getToken:()=>{
+     return Cookies.get('token_key')
+   },
+   beforeSetRequestHeaders:(config)=>{
+    config.headers['aaaaa']='bbbbbbbbbbbbb'
+   },
+   afterSetRequestHeaders:(config)=>{
+     console.log(config.headers)
+   }
+  })
+  // 正常是实例化完，后续再请求，
+  // 这边延迟下，让接口配置先保存完
+  setTimeout( async()=>{
+    const data=  await apiService.$fetchData('system.login')
+    if(data.status===200){
+      const token =data.data.data.result.token
+      Cookies.set('token_key',`Bearer ${token}`)
+
+      apiService.$fetchData('system.getmenu').then((res) => {
+        console.log(res)
+      })
+
+      // 取消请求
+      apiService.$cancelFetchApi('system.getmenu')
+    }
+  },1000)
+</script>
+
+</html>
