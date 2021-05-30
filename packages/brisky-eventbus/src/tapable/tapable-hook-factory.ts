@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 16:00:00
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-28 17:35:48
+ * @lastEditTime: 2021-05-30 19:11:57
  */
 
 import _ from 'lodash'
@@ -57,6 +57,7 @@ export class TapableHookFactory {
     }
     _.merge(hook, {
       isAsync,
+      name: option.name,
       key: name,
       matchObject: option.matchObject || {}
     })
