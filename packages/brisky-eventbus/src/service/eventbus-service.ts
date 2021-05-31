@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 15:59:42
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-30 20:22:20
+ * @lastEditTime: 2021-05-31 12:05:35
  */
 
 import { DataCheck } from '@brisky/util'
@@ -57,7 +57,7 @@ export default class EventBusServcie {
       !opt.args && (opt.args = 10)
     }
     let hook = this.getHook(opt)
-    if (hook) {
+    if (hook.length > 0) {
       (opt.callBack as Function[]).forEach(_callback => {
         hook.forEach(_hook => {
           this.newTap(_hook, _callback)
@@ -80,10 +80,11 @@ export default class EventBusServcie {
         name: option as string,
       }
     }
-    const hook = this.getHookByBaseOpt(option as BaseEventOption)
-    hook.forEach((_hook: any) => {
-      const isAsync = _hook.isAsync
-      !isAsync ? _hook.call(...params) : _hook.promise(...params)
+    const hooks = this.getHookByBaseOpt(option as BaseEventOption)
+    hooks.forEach((_hook: any) => {
+      const { hook } = _hook
+      const isAsync = hook.isAsync
+      !isAsync ? hook.call(...params) : hook.promise(...params)
     })
   }
 
@@ -141,7 +142,7 @@ export default class EventBusServcie {
       return flag
     })
     return _eventStore.filter((i: any) => {
-      return prefix && suffix ? i.key === key : i.name === name
+      return !(prefix && suffix) ? i.name === name : i.key === key
     }) || []
   }
 
@@ -156,7 +157,7 @@ export default class EventBusServcie {
     if (!eventStore[name]) {
       eventStore[name] = []
     }
-    const len = eventStore[name].filter((i: { key: any }) => { return i.key === key })
+    const len = eventStore[name].filter((i: { key: any }) => { return i.key === key }).length
     if (len > 0) {
       return
     }

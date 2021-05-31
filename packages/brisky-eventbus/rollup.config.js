@@ -5,6 +5,10 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 
+// 若是有用到node原生模块，需要引用这个2个插件
+import builtins from 'rollup-plugin-node-builtins'
+import globals from 'rollup-plugin-node-globals'
+
 const pkg = require('./package.json')
 const name = pkg.name
 
@@ -109,7 +113,7 @@ function createConfig (format, output, plugins = []) {
     'lodash'
   ]
 
-  const nodePlugins = [resolve(), commonjs()]
+  const nodePlugins = [globals(), builtins(), resolve(), commonjs()]
 
   return {
     input: `src/index.ts`,
