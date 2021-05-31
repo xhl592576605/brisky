@@ -5,12 +5,12 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 16:00:00
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-30 19:11:57
+ * @lastEditTime: 2021-05-31 20:18:41
  */
 
 import _ from 'lodash'
 import { HookOption, TapableHookType } from "src/interface/eventbus-opt"
-import { AsyncHook, AsyncSeriesBailHook, AsyncSeriesLoopHook, AsyncSeriesWaterfallHook, SyncBailHook, SyncHook, SyncLoopHook, SyncWaterfallHook } from 'tapable'
+import { AsyncSeriesHook, AsyncSeriesBailHook, AsyncSeriesLoopHook, AsyncSeriesWaterfallHook, SyncBailHook, SyncHook, SyncLoopHook, SyncWaterfallHook } from 'tapable'
 
 export class TapableHookFactory {
   private option: HookOption
@@ -52,7 +52,7 @@ export class TapableHookFactory {
         break
       default:
         //@ts-ignore
-        hook = isAsync ? new AsyncHook(args, name) : new SyncHook(args, name)
+        hook = isAsync ? new AsyncSeriesHook(args, name) : new SyncHook(args, name)
         break
     }
     _.merge(hook, {

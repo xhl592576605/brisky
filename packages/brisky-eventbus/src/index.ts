@@ -1,4 +1,9 @@
-import EventBusServcie from "./service/eventbus-service"
+import { TapableHookType, HookOption, BaseEventOption } from "./interface/eventbus-opt"
+import EventBusService from "./service/eventbus-service"
+
 export {
-  EventBusServcie
+  EventBusService,
+  TapableHookType, 
+  HookOption, 
+  BaseEventOption
 }

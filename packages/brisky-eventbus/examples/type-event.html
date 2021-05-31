@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+
+<body>
+
+</body>
+<script src="./js/lodash/lodash.min.js"></script>
+<script src="../dist/brisky-eventbus.umd.js"></script>
+<script>
+  const EventBusService = BriskyEventBus.EventBusService
+  const TapableHookType = BriskyEventBus.TapableHookType
+  const eventBusServie = new EventBusService()
+  eventBusServie.$on({
+    prefix: 'qwe',
+    suffix: 'asdf',
+    name: 'Waterfall',
+    hookType: TapableHookType.Waterfall
+  }, [() => {
+    console.log('init')
+    return 1
+  }, (a) => {
+    console.log(a)
+  }])
+  eventBusServie.$emit('Waterfall')
+
+  eventBusServie.$on({
+    prefix: 'qwe',
+    suffix: 'asdf',
+    name: 'async.Waterfall',
+    hookType: TapableHookType.Waterfall
+  }, [async (c) => {
+    console.log('init-async')
+    console.log(c)
+    return 2
+  }, async (a, c) => {
+    console.log(a)
+    console.log(c)
+  }])
+  eventBusServie.$emit('async.Waterfall', 'c')
+  eventBusServie.$on({
+    prefix: 'qwe',
+    suffix: 'asdf',
+    name: 'async.Waterfall-match',
+    hookType: TapableHookType.Waterfall,
+    matchObject: {
+      a: 1111
+    }
+  }, [async (c) => {
+    console.log('init-async-match')
+    console.log(c)
+    return 3
+  }, async (a, c) => {
+    console.log(a)
+    console.log(c)
+  }])
+
+  eventBusServie.$emit({
+    matchObject: {
+      a: 1111
+    }
+  }, 'b')
+</script>
+</script>
+
+</html>

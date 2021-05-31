@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+
+<body>
+
+</body>
+<script src="./js/lodash/lodash.min.js"></script>
+<script src="../dist/brisky-eventbus.umd.js"></script>
+<script>
+  const EventBusService = BriskyEventBus.EventBusService
+  const eventBusServie = new EventBusService()
+  eventBusServie.$on('test1', () => {
+    console.log('test1')
+  })
+  eventBusServie.$emit('test1')
+
+  eventBusServie.$on('test2', (a, b) => {
+    console.log('test2')
+    console.log(a)
+    console.log(b)
+  })
+  eventBusServie.$emit('test2', '1', 2)
+
+  eventBusServie.$on('async.test1', async () => {
+    console.log('async.test1')
+  })
+  eventBusServie.$emit('async.test1')
+
+  eventBusServie.$on('async.test2', async (a, b) => {
+    console.log('async.test2')
+    console.log(a)
+    console.log(b)
+  })
+  eventBusServie.$emit('async.test2', 'async.1', 'async.2')
+
+  eventBusServie.$on('test3', [() => {
+    console.log('test3-1')
+  }, () => {
+    console.log('test3-2')
+
+  }])
+  eventBusServie.$emit('test3')
+</script>
+</script>
+
+</html>

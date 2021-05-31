@@ -5,14 +5,14 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 15:59:42
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-31 12:05:35
+ * @lastEditTime: 2021-05-31 20:50:05
  */
 
 import { DataCheck } from '@brisky/util'
 import { BaseEventOption, HookOption } from "src/interface/eventbus-opt"
 import { TapableHookFactory } from 'src/tapable/tapable-hook-factory'
 
-export default class EventBusServcie {
+export default class EventBusService {
 
   private $dataCheck: DataCheck
 
@@ -55,6 +55,7 @@ export default class EventBusServcie {
       !opt.prefix && (opt.prefix = baseHookOpt.prefix)
       !opt.suffix && (opt.suffix = baseHookOpt.suffix)
       !opt.args && (opt.args = 10)
+      opt.callBack = fn
     }
     let hook = this.getHook(opt)
     if (hook.length > 0) {
@@ -141,6 +142,9 @@ export default class EventBusServcie {
       }
       return flag
     })
+    if (!name) {
+      return _eventStore
+    }
     return _eventStore.filter((i: any) => {
       return !(prefix && suffix) ? i.name === name : i.key === key
     }) || []
