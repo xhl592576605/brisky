@@ -38,3 +38,6 @@
 - `lerna link`	链接互相引用的库
 - `lerna create`	新建package
 - `lerna publish`	发布
+
+# yalc 管理各个类库的link
+> https://segmentfault.com/a/1190000039658156
