@@ -70,7 +70,8 @@ function createConfig (format, output, plugins = []) {
   output.banner = banner
   output.externalLiveBindings = false
   output.globals = {
-
+    '@brisky/util': 'BriskyUtil',
+    '@brisky/eventbus': 'BriskyEventBus'
   }
 
   const isProductionBuild = /\.prod\.js$/.test(output.file)
@@ -113,9 +114,6 @@ function createConfig (format, output, plugins = []) {
     '@brisky/eventbus',
     '@brisky/util'
   ]
-  const globals = {
-    '@brisky/util': 'util'
-  }
 
   const nodePlugins = [resolve(), commonjs()]
 
@@ -124,7 +122,6 @@ function createConfig (format, output, plugins = []) {
     // Global and Browser ESM builds inlines everything so that they can be
     // used alone.
     external,
-    globals,
     plugins: [
       tsPlugin,
       createReplacePlugin(
