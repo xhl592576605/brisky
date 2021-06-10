@@ -110,8 +110,12 @@ function createConfig (format, output, plugins = []) {
     'vue',
     'vuex',
     'vue-router',
-    '@brisky/eventbus'
+    '@brisky/eventbus',
+    '@brisky/util'
   ]
+  const globals = {
+    '@brisky/util': 'util'
+  }
 
   const nodePlugins = [resolve(), commonjs()]
 
@@ -120,6 +124,7 @@ function createConfig (format, output, plugins = []) {
     // Global and Browser ESM builds inlines everything so that they can be
     // used alone.
     external,
+    globals,
     plugins: [
       tsPlugin,
       createReplacePlugin(

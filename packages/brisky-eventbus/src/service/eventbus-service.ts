@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 15:59:42
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-31 20:50:05
+ * @lastEditTime: 2021-06-10 22:34:31
  */
 
 import { DataCheck } from '@brisky/util'
@@ -74,7 +74,7 @@ export default class EventBusService {
   /**
    * 触发事件
    */
-  $emit(option: BaseEventOption | string, ...params: any[]) {
+  async $emit(option: BaseEventOption | string, ...params: any[]) {
     const { $dataCheck } = this
     if ($dataCheck.$isString(option)) {
       option = {
@@ -82,11 +82,13 @@ export default class EventBusService {
       }
     }
     const hooks = this.getHookByBaseOpt(option as BaseEventOption)
+    const hookCalls: any[] = []
     hooks.forEach((_hook: any) => {
       const { hook } = _hook
       const isAsync = hook.isAsync
-      !isAsync ? hook.call(...params) : hook.promise(...params)
+      hookCalls.push(!isAsync ? hook.call(...params) : hook.promise(...params))
     })
+    return Promise.all(hookCalls)
   }
 
 

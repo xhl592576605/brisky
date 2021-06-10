@@ -1,32 +1,52 @@
-
 import { EventBusService } from '@brisky/eventbus'
-export default {
+import lifeOpt from './cycle-opt'
+export default class LifeCycle {
   // 配置生成
-  beforeGetSystem: new EventBusService(),
-  awaitGetSystem: new EventBusService(),
-  afterGetSystem: new EventBusService(),
+  beforeGetSystem: EventBusService = new EventBusService()
+  awaitGetSystem: EventBusService = new EventBusService()
+  afterGetSystem: EventBusService = new EventBusService()
   // 实例准备
-  beforeCoreReady: new EventBusService(),
-  awaitCoreReady: new EventBusService(),
-  afterCoreReady: new EventBusService(),
+  beforeCoreReady: EventBusService = new EventBusService()
+  awaitCoreReady: EventBusService = new EventBusService()
+  afterCoreReady: EventBusService = new EventBusService()
   // 生成vue
-  beforeNewVue: new EventBusService(),
-  afterNewVue: new EventBusService(),
+  beforeCreateApp: EventBusService = new EventBusService()
+  afterCreateApp: EventBusService = new EventBusService()
   // 注入props
-  beforeInjectProps: new EventBusService(),
+  beforeInjectProps: EventBusService = new EventBusService()
   // 鉴权相关
-  afterAuthSuccess: new EventBusService(),
-  afterAuthNothing: new EventBusService(),
-  afterAuthFailure: new EventBusService(),
+  afterAuthSuccess: EventBusService = new EventBusService()
+  afterAuthNothing: EventBusService = new EventBusService()
+  afterAuthFailure: EventBusService = new EventBusService()
   // 登录相关
-  beforeLogin: new EventBusService(),
-  afterLogin: new EventBusService(),
-  beforeLogout: new EventBusService(),
-  afterLogout: new EventBusService(),
-  beforeSwitch: new EventBusService(),
-  afterSwitch: new EventBusService(),
+  beforeLogin: EventBusService = new EventBusService()
+  afterLogin: EventBusService = new EventBusService()
+  beforeLogout: EventBusService = new EventBusService()
+  afterLogout: EventBusService = new EventBusService()
   // 接口请求拦截
-  onXhrOpen: new EventBusService(),
-  onXhrSend: new EventBusService(),
-  onXhrChange: new EventBusService(),
+  onXhrOpen: EventBusService = new EventBusService()
+  onXhrSend: EventBusService = new EventBusService()
+  onXhrChange: EventBusService = new EventBusService()
+
+  constructor() {
+    this.beforeGetSystem.$on(lifeOpt.beforeGetSystemOpt, [])
+    this.awaitGetSystem.$on(lifeOpt.awaitGetSystemOpt, [])
+    this.afterGetSystem.$on(lifeOpt.afterGetSystemOpt, [])
+    this.beforeCoreReady.$on(lifeOpt.beforeCoreReadyOpt, [])
+    this.awaitCoreReady.$on(lifeOpt.awaitCoreReadyOpt, [])
+    this.afterCoreReady.$on(lifeOpt.afterCoreReadyOpt, [])
+    this.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, [])
+    this.afterCreateApp.$on(lifeOpt.afterCreateAppOpt, [])
+    this.beforeInjectProps.$on(lifeOpt.beforeInjectPropsOpt, [])
+    this.afterAuthSuccess.$on(lifeOpt.afterAuthSuccessOpt, [])
+    this.afterAuthNothing.$on(lifeOpt.afterAuthNothingOpt, [])
+    this.afterAuthFailure.$on(lifeOpt.afterAuthFailureOpt, [])
+    this.beforeLogin.$on(lifeOpt.beforeLoginOpt, [])
+    this.afterLogin.$on(lifeOpt.afterLoginOpt, [])
+    this.beforeLogout.$on(lifeOpt.beforeLogoutOpt, [])
+    this.afterLogout.$on(lifeOpt.afterLogoutOpt, [])
+    this.onXhrOpen.$on(lifeOpt.onXhrOpenOpt, [])
+    this.onXhrSend.$on(lifeOpt.onXhrSendOpt, [])
+    this.onXhrChange.$on(lifeOpt.onXhrChangeOpt, [])
+  }
 }
