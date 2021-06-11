@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+
+<body>
+
+</body>
+<script src="./js/lodash/lodash.min.js"></script>
+<script src="../dist/brisky-eventbus.umd.js"></script>
+<script>
+  const EventBusService = BriskyEventBus.EventBusService
+  const TapableHookType = BriskyEventBus.TapableHookType
+  const eventBusServie = new EventBusService()
+  eventBusServie.$on('test', async () => {
+    console.log('test')
+  })
+  eventBusServie.$on('async.test1', async () => {
+    setTimeout(() => {
+      console.log('async.test1-setTimeout')
+    }, 0)
+    const  a=async ()=>{
+      console.log('a')
+    }
+    console.log('async.test1')
+    console.log('async2.test1')
+    a()
+    console.log('async3.test1')
+   
+  })
+  const testFunc = async () => {
+    await eventBusServie.$emit('async.test1')
+    eventBusServie.$emit('test')
+  }
+  testFunc()
+</script>
+</script>
+
+</html>

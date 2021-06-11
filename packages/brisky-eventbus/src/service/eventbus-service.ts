@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 15:59:42
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-10 22:34:31
+ * @lastEditTime: 2021-06-11 22:05:07
  */
 
 import { DataCheck } from '@brisky/util'
@@ -88,7 +88,7 @@ export default class EventBusService {
       const isAsync = hook.isAsync
       hookCalls.push(!isAsync ? hook.call(...params) : hook.promise(...params))
     })
-    return Promise.all(hookCalls)
+    return await Promise.all(hookCalls)
   }
 
 
