@@ -5,18 +5,19 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-10 22:42:55
+ * @lastEditTime: 2021-06-11 21:39:14
  */
 import _ from 'lodash'
 import { App, Component, createApp } from 'vue'
-import { createRouter, Router } from 'vue-router'
-import { createStore, Store } from 'vuex'
+import { createRouter, Router, RouterOptions } from 'vue-router'
+import { createStore, Store, StoreOptions } from 'vuex'
 import { version } from '../../package.json'
 import { BriskyPlugin, CoreOption } from 'src/interface/option'
 import { EventBusService } from '@brisky/eventbus'
 import { DataCheck } from '@brisky/util'
 import LifeCycle from 'src/life-cycle'
 import lifeOpt from 'src/life-cycle/cycle-opt'
+import defaultRouter from '../router/idnex'
 
 export default class Core {
   private $dataCheck: DataCheck
@@ -44,7 +45,7 @@ export default class Core {
    * 初始化app
    * @param option 
    */
-  public async init(option: CoreOption) {
+  public async init(option: CoreOption = {}) {
 
     // 初始化config
     this.initConfig(option)
@@ -79,7 +80,7 @@ export default class Core {
     this.usePlugin(option.plugins)
 
     this.$vm.config.globalProperties.$core = this
-    this.$vm.mount(this.app)
+    this.$vm.mount(this.$el)
     return this.$vm
   }
 
@@ -144,7 +145,7 @@ export default class Core {
   private initConfig(option: CoreOption) {
     window.$frame = this.$frame = _.merge(this.$frame, window.$frame || {})
     this.$alias = _.merge(this.$alias, option.alias || {}, this.$frame.alias || {})
-    this.$store = createStore(option.store)
-    this.$router = createRouter(option.router)
+    this.$store = createStore(option.store as StoreOptions<any> || {})
+    this.$router = createRouter(option.router as RouterOptions || defaultRouter)
   }
 }

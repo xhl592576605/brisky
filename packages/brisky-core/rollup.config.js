@@ -71,7 +71,10 @@ function createConfig (format, output, plugins = []) {
   output.externalLiveBindings = false
   output.globals = {
     '@brisky/util': 'BriskyUtil',
-    '@brisky/eventbus': 'BriskyEventBus'
+    '@brisky/eventbus': 'BriskyEventBus',
+    'vuex': 'Vuex',
+    'vue': 'Vue',
+    'vue-router': 'VueRouter'
   }
 
   const isProductionBuild = /\.prod\.js$/.test(output.file)

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>base</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- vue -->
+  <script src="./js/vue/vue.global.js"></script>
+  <!-- vuex -->
+  <script src="./js/vuex/vuex.global.js"></script>
+  <!-- vue-router -->
+  <script src="./js/vue-router/vue-router.global.js"></script>
+  <!-- lodash - 工具库 -->
+  <script src="./js/lodash/lodash.min.js"></script>
+  <!--brisky/util-->
+  <script src="./js/@brisky/util//brisky-util.umd.js"></script>
+  <!--brisky/eventbus-->
+  <script src="./js//@brisky/eventbus/brisky-eventbus.umd.js"></script>
+  <!--brisky/core-->
+  <script src="../dist/brisky-core.umd.js"></script>
+  <!--requireJs-->
+  <script src="./js//requirejs/require.min.js"></script>
+  <script>
+    window.$frame = {
+
+    }
+    $core.init()
+  </script>
+</body>
+
+</html>
