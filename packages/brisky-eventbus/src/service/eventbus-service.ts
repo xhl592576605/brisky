@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-28 15:59:42
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-11 22:05:07
+ * @lastEditTime: 2021-06-18 23:24:48
  */
 
 import { DataCheck } from '@brisky/util'
@@ -60,8 +60,8 @@ export default class EventBusService {
     let hook = this.getHook(opt)
     if (hook.length > 0) {
       (opt.callBack as Function[]).forEach(_callback => {
-        hook.forEach(_hook => {
-          this.newTap(_hook, _callback)
+        hook.forEach((_hook: any) => {
+          this.newTap(_hook.hook, _callback)
         })
       })
     } else {

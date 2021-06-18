@@ -5,7 +5,7 @@ import { StoreOptions } from "vuex"
 
 export interface CoreOption {
   store?: StoreOptions<any>,
-  router?: RouterOptions,
+  routers?: RouterOptions,
   plugins?: Array<any>
   hooks?: EventObject,
   briskyPlugins?: Array<BriskyPlugin>,

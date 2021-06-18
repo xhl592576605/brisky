@@ -9,7 +9,11 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <router-link to="/">Go to Home</router-link>
+    <router-link to="/about">Go to About</router-link>
+    <router-view></router-view>
+  </div>
   <!-- vue -->
   <script src="./js/vue/vue.global.js"></script>
   <!-- vuex -->
@@ -27,12 +31,79 @@
   <!--requireJs-->
   <script src="./js/requirejs/require.min.js"></script>
   <script>
-    window.$frame = {
-      render: (h) => {
-       return  h('h1', {}, 'brisky')
-      }
+    const Home = {
+      template: '<div>Home</div>'
     }
-    $core.init()
+    const About = {
+      template: '<div>About</div>'
+    }
+    const routes = [{
+        path: '/',
+        component: Home
+      },
+      {
+        path: '/about',
+        component: About
+      },
+    ]
+    window.$frame = {
+
+    }
+
+    //$core.init({
+    new BriskyCore.core({
+      name: 'App'
+    }).init({
+      routes,
+      hooks: {
+        'beforeGetSystem': (core) => {
+          console.log('beforeGetSystem', core)
+        },
+        'awaitGetSystem': async (core) => {
+          console.log('awaitGetSystem', core)
+        },
+        'afterGetSystem': (core) => {
+          console.log('afterGetSystem', core)
+        },
+
+        'beforeCoreReady': (core) => {
+          console.log('beforeCoreReady', core)
+        },
+        'awaitCoreReady': async (core) => {
+          console.log('awaitCoreReady', core)
+        },
+        'beforeCreateApp': (core) => {
+          console.log('beforeCreateApp', core)
+        },
+        'vue.beforeCreate': () => {
+          console.log('vue.beforeCreate')
+        },
+        'vue.created': () => {
+          console.log('vue.created')
+        },
+        'vue.beforeMount': () => {
+          console.log('vue.beforeMount')
+        },
+        'vue.mounted': () => {
+          console.log('vue.mounted')
+        },
+        'vue.beforeUpdate': () => {
+          console.log('vue.beforeUpdate')
+        },
+        'vue.updated': () => {
+          console.log('vue.updated')
+        },
+        'afterCreateApp': (core) => {
+          console.log('afterCreateApp', core)
+        },
+        'router.beforeEach': (to, from) => {
+          console.log('router.beforeEach', to, from)
+        },
+        'router.afterEach': (to, from) => {
+          console.log('router.afterEach', to, from)
+        },
+      },
+    })
   </script>
 </body>
 

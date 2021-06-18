@@ -146,6 +146,6 @@ export default class Core {
     window.$frame = this.$frame = _.merge(this.$frame, window.$frame || {})
     this.$alias = _.merge(this.$alias, option.alias || {}, this.$frame.alias || {})
     this.$store = createStore(option.store as StoreOptions<any> || {})
-    this.$router = createRouter(option.router as RouterOptions || defaultRouter)
+    this.$router = createRouter(option.routers as RouterOptions || defaultRouter)
   }
 }

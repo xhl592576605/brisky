@@ -28,7 +28,9 @@
   <script src="./js/requirejs/require.min.js"></script>
   <script>
     window.$frame = {
-
+      render: (h) => {
+        return h('h1', {}, 'brisky')
+      }
     }
     $core.init()
   </script>
