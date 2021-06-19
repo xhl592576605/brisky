@@ -72,6 +72,7 @@ function createConfig (format, output, plugins = []) {
   output.globals = {
     '@brisky/util': 'BriskyUtil',
     '@brisky/eventbus': 'BriskyEventBus',
+    '@brisky/api': 'BriskyApi',
     'vuex': 'Vuex',
     'vue': 'Vue',
     'vue-router': 'VueRouter'
@@ -111,11 +112,13 @@ function createConfig (format, output, plugins = []) {
 
   const external = [
     'lodash',
+    'requirejs',
     'vue',
     'vuex',
     'vue-router',
     '@brisky/eventbus',
-    '@brisky/util'
+    '@brisky/util',
+    '@brisky/api'
   ]
 
   const nodePlugins = [resolve(), commonjs()]

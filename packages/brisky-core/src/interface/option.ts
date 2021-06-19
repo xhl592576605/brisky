@@ -1,6 +1,7 @@
 import core from "../core"
 import { RouterOptions } from "vue-router"
 import { StoreOptions } from "vuex"
+import { ApiServiceOpt } from "@brisky/api"
 
 
 export interface CoreOption {
@@ -10,6 +11,7 @@ export interface CoreOption {
   hooks?: EventObject,
   briskyPlugins?: Array<BriskyPlugin>,
   alias?: Object
+  apiServiceOpt?: ApiServiceOpt
 }
 
 export interface EventObject {

@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-27 17:29:00
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-27 17:59:18
+ * @lastEditTime: 2021-06-19 16:15:59
  */
 
 import axios from 'axios'
@@ -19,7 +19,7 @@ const $dataCheck = new DataCheck()
  * @param key 
  * @returns 
  */
-export default function LoadConfig(key: any) {
+export default function loadConfig(key: any) {
   const promise = new Promise((resolve) => {
     const REG_JS = /(\.js)$/
     const REG_JSON = /(\.json)$/

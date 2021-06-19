@@ -6,6 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>base</title>
+  <style>
+    #app {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,18 +28,50 @@
   <script src="./js/vue-router/vue-router.global.js"></script>
   <!-- lodash - 工具库 -->
   <script src="./js/lodash/lodash.min.js"></script>
+  <!-- axios -->
+  <script src="./js/axios/axios.min.js"></script>
+  <!-- js-cookie -->
+  <script src="./js/js-cookie/js.cookie.js"></script>
   <!--brisky/util-->
-  <script src="./js/@brisky/util/brisky-util.umd.js"></script>
+  <script src="./js/@brisky/util/brisky-util.global.js"></script>
   <!--brisky/eventbus-->
-  <script src="./js/@brisky/eventbus/brisky-eventbus.umd.js"></script>
+  <script src="./js/@brisky/eventbus/brisky-eventbus.global.js"></script>
+  <!--brisky/api-->
+  <script src="./js/@brisky/api/brisky-api.global.js"></script>
   <!--brisky/core-->
   <script src="../dist/brisky-core.global.js"></script>
   <!--requireJs-->
   <script src="./js/requirejs/require.min.js"></script>
   <script>
+    window.$externals = ['Vue', 'Vuex', 'VueRouter']
+    window.$externals.forEach(function (external) {
+      if (window[external]) {
+        define(external, [], function () {
+          return window[external]
+        })
+      } else {
+        window[external] = null
+      }
+    })
+    const a = BriskyCore.loadModule('../examples/component/hello-word/index.js')
+    console.log(a);
+    const asyncComp = BriskyCore.loadComponent('../examples/component/hello-word/index.js', {
+      enableCompApiService: false
+    }, {
+      props: {
+        enableCompApiService: {
+          type: Boolean,
+          default: true,
+        }
+      }
+    })
+    console.log(asyncComp);
+
     window.$frame = {
       render: (h) => {
-        return h('h1', {}, 'brisky')
+        return h('h1', {}, [h(asyncComp, {
+          msg: 'brisky'
+        })])
       }
     }
     $core.init()

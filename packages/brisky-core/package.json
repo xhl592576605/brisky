@@ -45,6 +45,7 @@
     "@rollup/plugin-strip": "^2.0.0",
     "@types/js-cookie": "^2.2.6",
     "@types/lodash": "^4.14.168",
+    "@types/requirejs": "^2.1.32",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",
     "babel-eslint": "^10.1.0",
@@ -61,8 +62,10 @@
     "yalc": "^1.0.0-pre.53"
   },
   "dependencies": {
+    "@brisky/api": "file:.yalc/@brisky/api",
     "@brisky/eventbus": "file:.yalc/@brisky/eventbus",
     "@brisky/util": "file:.yalc/@brisky/util",
+    "requirejs": "^2.3.6",
     "vue": "^3.1.1",
     "vue-router": "^4.0.8",
     "vuex": "^4.0.1"

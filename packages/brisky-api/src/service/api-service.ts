@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-27 19:28:55
  * @lastEditors: brisky
- * @lastEditTime: 2021-05-30 18:34:40
+ * @lastEditTime: 2021-06-19 12:53:27
  */
 
 import _ from 'lodash'
@@ -175,7 +175,7 @@ export default class ApiService {
    * @param apiOpt 
    * @returns 
    */
-  $fetchData(apiChainKey: string, apiOpt: object) {
+  $fetchData(apiChainKey: string, apiOpt: object = {}) {
     const service = this.getService()
     const options = this.getServiceConfig(
       apiChainKey,
@@ -225,7 +225,7 @@ export default class ApiService {
    * @param apiOpt 
    * @returns 
    */
-  $fetchDataByUrl(url: string, apiOpt: object) {
+  $fetchDataByUrl(url: string, apiOpt: object = {}) {
     if (!url || !url.length) {
       throw new Error('【url】参数未配置！')
     }

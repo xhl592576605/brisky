@@ -3,11 +3,8 @@
   * (c) 2021 brisky-util
   * @license MIT
   */
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BriskyUtil = {}));
-}(this, (function (exports) { 'use strict';
+var BriskyUtil = (function (exports) {
+  'use strict';
 
   /*
    * @description: 类型检查
@@ -282,4 +279,6 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+  return exports;
+
+}({}));

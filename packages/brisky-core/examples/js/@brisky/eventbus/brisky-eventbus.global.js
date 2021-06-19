@@ -3,11 +3,8 @@
   * (c) 2021 brisky-eventbus
   * @license MIT
   */
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'lodash'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.BriskyEventBus = {}, global._));
-}(this, (function (exports, _) { 'use strict';
+var BriskyEventBus = (function (exports, _) {
+  'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
@@ -2190,4 +2187,6 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+  return exports;
+
+}({}, _));
