@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-09 22:05:02
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-09 22:50:57
+ * @lastEditTime: 2021-06-20 16:55:45
  */
 
 import { BaseEventOption, HookOption, TapableHookType } from "@brisky/eventbus"
@@ -75,7 +75,6 @@ const afterCreateAppOpt: HookOption = {
   ...baseOpt,
   name: 'afterCreateApp',
   hookType: TapableHookType.Default,
-
   args: ['core'],
   callBack: []
 }

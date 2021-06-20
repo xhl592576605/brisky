@@ -68,10 +68,11 @@
     console.log(asyncComp);
 
     window.$frame = {
+      debug: true,
       render: (h) => {
-        return h('h1', {}, [h(asyncComp, {
+        return h(asyncComp, {
           msg: 'brisky'
-        })])
+        })
       }
     }
     $core.init()

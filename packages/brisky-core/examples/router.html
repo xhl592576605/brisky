@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>base</title>
+  <style>
+    #app {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- vue -->
+  <script src="./js/vue/vue.global.js"></script>
+  <!-- vuex -->
+  <script src="./js/vuex/vuex.global.js"></script>
+  <!-- vue-router -->
+  <script src="./js/vue-router/vue-router.global.js"></script>
+  <!-- lodash - 工具库 -->
+  <script src="./js/lodash/lodash.min.js"></script>
+  <!-- axios -->
+  <script src="./js/axios/axios.min.js"></script>
+  <!-- js-cookie -->
+  <script src="./js/js-cookie/js.cookie.js"></script>
+  <!--brisky/util-->
+  <script src="./js/@brisky/util/brisky-util.global.js"></script>
+  <!--brisky/eventbus-->
+  <script src="./js/@brisky/eventbus/brisky-eventbus.global.js"></script>
+  <!--brisky/api-->
+  <script src="./js/@brisky/api/brisky-api.global.js"></script>
+  <!--brisky/core-->
+  <script src="../dist/brisky-core.global.js"></script>
+  <!--requireJs-->
+  <script src="./js/requirejs/require.min.js"></script>
+  <script>
+    window.$externals = ['Vue', 'Vuex', 'VueRouter']
+    window.$externals.forEach(function (external) {
+      if (window[external]) {
+        define(external, [], function () {
+          return window[external]
+        })
+      } else {
+        window[external] = null
+      }
+    })
+    window.$frame = {
+      debug: true,
+      render: (h) => {
+        const {
+          $core
+        } = this
+        const {
+          meta = {}
+        } = $core.$router.currentRoute.value
+        const {
+          module
+        } = meta
+        debugger
+        return h(module)
+      },
+      login: {
+        path: '/login',
+        component: '../examples/component/hello-word/index.js',
+      },
+      alias: {
+        'exception-404': '../examples/component/exception-404/index.js'
+      },
+      routes: [{
+          path: '/',
+          component: '../examples/component/hello-word/index.js',
+          meta: {
+            moduleConfig: '../examples/config/module-config.json'
+          }
+
+        }, {
+          path: '/first',
+          component: '../examples/component/hello-word/index.js',
+          meta: {
+            moduleConfig: {
+              msg: 'first'
+            }
+          }
+        },
+        {
+          path: '/two',
+          component: '../examples/component/hello-word/index.js',
+          meta: {
+            moduleConfig: {
+              msg: 'two'
+            }
+          }
+        }
+      ]
+    }
+    $core.init({
+      hooks: {
+        'afterCreateApp': ($core) => {
+          $core.$router.addRoute(BriskyCore.routeWrap({
+            path: '/three',
+            component: '../examples/component/hello-word/index.js',
+            meta: {
+              moduleConfig: {
+                msg: 'three'
+              }
+            }
+          }, $core))
+          setTimeout(() => {
+            // 测试跳转,并测试404
+            $core.$router.push('/123')
+            console.log($core.$router)
+          }, 3000)
+        }
+      },
+      routers: {
+        history: VueRouter.createWebHashHistory(),
+        routes: []
+      }
+    })
+
+    setTimeout(() => {
+      // 测试登出，将使用addRoute添加的路由删掉，因为这些是菜单
+      $core.loginout()
+    }, 1000)
+  </script>
+</body>
+
+</html>

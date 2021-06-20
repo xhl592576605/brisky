@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-19 17:10:32
+ * @lastEditTime: 2021-06-20 16:56:48
  */
 import _ from 'lodash'
 import { App, Component, createApp, ref } from 'vue'
@@ -21,6 +21,8 @@ import lifeOpt from 'src/life-cycle/cycle-opt'
 import defaultRouter from '../router/idnex'
 import log from 'src/util/log'
 import loadComponent from 'src/util/load-component'
+import defaultBriskyPlugin from 'src/plugin'
+import frame from '../frame'
 
 export default class Core {
   [key: string]: any
@@ -33,12 +35,13 @@ export default class Core {
   public $vm?: App
   public $store: Store<any> | null = null
   public $router: Router | null = null
-  public $frame: any = {}
-  public $alias: Object = {}
   public $eventServcie = new EventBusService()
   public $apiService?: ApiService
   public $lifeCycle: LifeCycle = new LifeCycle()
   public $plugins?: Array<BriskyPlugin> = []
+  // public $alias: Object = {}
+  // public $frame:Object={}
+
 
 
   constructor(app: Component) {
@@ -61,7 +64,7 @@ export default class Core {
     this.registerLifeCycle(option.hooks)
 
     // 注册内部插件
-    this.useBriskyPlugin(option.briskyPlugins)
+    this.useBriskyPlugin(this.$plugins)
 
     // 开始生命周期
 
@@ -70,7 +73,8 @@ export default class Core {
     await this.$lifeCycle.awaitGetSystem.$emit(lifeOpt.awaitGetSystemOpt, this)
     this.$lifeCycle.afterGetSystem.$emit(lifeOpt.afterCreateAppOpt, this)
 
-    // init core
+    this.defineDynamicProxy('$frame', Object.assign(frame, window.$frame || {}))
+
     this.$lifeCycle.beforeCoreReady.$emit(lifeOpt.beforeCoreReadyOpt, this)
     await this.$lifeCycle.awaitCoreReady.$emit(lifeOpt.awaitCoreReadyOpt, this)
     this.$lifeCycle.afterCoreReady.$emit(lifeOpt.afterCoreReadyOpt, this)
@@ -88,6 +92,7 @@ export default class Core {
 
     this.$vm.config.globalProperties.$core = this
     this.$vm.mount(this.$el)
+    log('core init success', this)
     return this.$vm
   }
 
@@ -136,9 +141,8 @@ export default class Core {
    * @param plugins 
    */
   public useBriskyPlugin(plugins: Array<BriskyPlugin> | undefined): void {
-    this.$plugins = plugins
     plugins && plugins.forEach(plugin => {
-      if (!plugin.name || this.$dataCheck.$isFunction(plugin.apply)) {
+      if (!plugin.name || !this.$dataCheck.$isFunction(plugin.apply)) {
         console.warn('no standard plugin', plugin.constructor)
         return
       }
@@ -155,6 +159,16 @@ export default class Core {
     const res = await this.$apiService?.$fetchData('system.login', data)
     const token = this.$dataMatch.$matchData4String(tokenMatchStr, res)
     this.$lifeCycle.afterLogin.$emit(lifeOpt.afterLoginOpt, token)
+  }
+
+  /**
+ * 登出
+ * @param status 
+ */
+  public async loginout(status: any) {
+    this.$lifeCycle.beforeLogout.$emit(lifeOpt.beforeLogoutOpt, status)
+    // this.Token && await this.$apiService?.$fetchData('system.loginout')
+    this.$lifeCycle.afterLogout.$emit(lifeOpt.afterLogoutOpt, status)
   }
 
   /**
@@ -194,15 +208,6 @@ export default class Core {
     return { ...getDefined(this), ...getDefined(Object.getPrototypeOf(this)) }
   }
 
-  /**
-   * 登出
-   * @param status 
-   */
-  public async loginout(status: any) {
-    this.$lifeCycle.beforeLogout.$emit(lifeOpt.beforeLogoutOpt, status)
-    this.Token && await this.$apiService?.$fetchData('system.loginout')
-    this.$lifeCycle.afterLogout.$emit(lifeOpt.afterLogoutOpt, status)
-  }
 
   /**
    * 加载组件，支持加载别名的组件
@@ -213,11 +218,10 @@ export default class Core {
   public loadComponent(compKey: any, configKey: any, option: any = {}) {
     let view
     if (typeof compKey === 'string' && /\.js$/.test(compKey) === false) {
-      const alias = this.alias
+      const alias = this.$alias
       view = alias[compKey]
       if (!view) {
-        log('alias', alias)
-        console.error(`【alias】中未匹配到组件：${compKey}`)
+        console.warn(`【alias】中未匹配到组件：${compKey}`)
       }
     } else {
       view = compKey
@@ -230,8 +234,7 @@ export default class Core {
    * @param option 
    */
   private initConfig(option: CoreOption) {
-    window.$frame = this.$frame = _.merge(this.$frame, window.$frame || {})
-    this.$alias = _.merge(this.$alias, option.alias || {}, this.$frame.alias || {})
+    this.$plugins = _.merge([], this.$plugins, defaultBriskyPlugin || [], option.briskyPlugins || [])
     this.$store = createStore(option.store as StoreOptions<any> || {})
     this.$router = createRouter(option.routers as RouterOptions || defaultRouter)
     this.$apiService = new ApiService(option.apiServiceOpt as ApiServiceOpt || {})
