@@ -1,15 +1,15 @@
 /*
- * @description: CoreRouterPlugin
+ * @description: CoreRouterPlugin 核心路由插件
  * @version: 1.0
  * @autor: brisky
  * @email: 592576605@qq.com
  * @date: 2021-06-19 18:52:17
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-21 19:59:38
+ * @lastEditTime: 2021-06-21 23:50:04
  */
 
 import core from "src/core"
-import lifeOpt from '../life-cycle/cycle-opt'
+import lifeOpt from '../life-cycle/life-opt'
 import { BriskyPlugin } from "src/interface/option"
 import { createRouter, Router } from "vue-router"
 import routeWrap from "src/util/route-wrap"

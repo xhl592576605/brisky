@@ -1,15 +1,15 @@
 /*
- * @description: CoreSystemPlugin
+ * @description: CoreSystemPlugin 核心系统插件
  * @version: 1.0
  * @autor: brisky
  * @email: 592576605@qq.com
  * @date: 2021-06-19 17:20:04
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-20 18:04:48
+ * @lastEditTime: 2021-06-21 23:49:56
  */
 
 
-import lifeOpt from 'src/life-cycle/cycle-opt'
+import lifeOpt from 'src/life-cycle/life-opt'
 import core from "src/core"
 import { BriskyPlugin } from "src/interface/option"
 import { loadConfig } from '@brisky/api'

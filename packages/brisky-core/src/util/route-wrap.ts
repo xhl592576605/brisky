@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-20 15:17:56
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-20 17:35:52
+ * @lastEditTime: 2021-06-22 00:10:21
  */
 
 import core from "src/core"
@@ -13,7 +13,6 @@ import { RouteRecordRaw } from "vue-router"
 
 const metaWrap = ({ meta = {}, component }: any, $core: core) => {
   const $frame = $core.$frame
-
   // 读取组件
   const layoutKey = meta.layoutKey || 'layout-spa'
   const vesselKey = meta.vesselKey || 'vessel-blank'

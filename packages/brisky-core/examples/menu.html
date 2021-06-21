@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>router</title>
+  <title>menu</title>
   <style>
     #app {
       font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -32,6 +32,9 @@
   <script src="./js/axios/axios.min.js"></script>
   <!-- js-cookie -->
   <script src="./js/js-cookie/js.cookie.js"></script>
+  <!--mockjs-->
+  <script src="./js/mock/mock.js"></script>
+  <script src="./mock/login.js"></script>
   <!--brisky/util-->
   <script src="./js/@brisky/util/brisky-util.global.js"></script>
   <!--brisky/eventbus-->
@@ -104,22 +107,31 @@
       ]
     }
     $core.init({
-      hooks: {
-        'afterCreateApp': ($core) => {
-          $core.$router.addRoute(BriskyCore.routeWrap({
-            path: '/three',
-            component: '../examples/component/hello-word/index.js',
-            meta: {
-              moduleConfig: {
-                msg: 'three'
+      apiServiceOpt: {
+        api: {
+          system: {
+            login: {
+              url: "api/login",
+              author: "brisky",
+              method: "post",
+              params: {
+                sign: "brisky"
+              },
+              data: {
+                account: "SuperAdmin",
+                password: "123456"
+              }
+            },
+            getmenu: {
+              url: "api/getmenu",
+              author: "brisky",
+              method: "get",
+              certificate: true,
+              params: {
+                sign: "brisky"
               }
             }
-          }, $core))
-          setTimeout(() => {
-            // 测试跳转,并测试404
-            $core.$router.push('/three')
-            console.log($core.$router)
-          }, 3000)
+          }
         }
       },
       routers: {
@@ -128,10 +140,9 @@
       }
     })
 
-    setTimeout(() => {
-      // 测试登出，将使用addRoute添加的路由删掉，因为这些是菜单
-      $core.loginout()
-    }, 1000)
+    setTimeout(()=>{
+      $core.login({})
+    },1000)
   </script>
 </body>
 

@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-21 19:51:44
+ * @lastEditTime: 2021-06-22 00:18:07
  */
 import _ from 'lodash'
 import { App, Component, createApp, ref } from 'vue'
@@ -17,7 +17,7 @@ import { EventBusService } from '@brisky/eventbus'
 import { DataCheck, DataMatch } from '@brisky/util'
 import { ApiService, ApiServiceOpt } from '@brisky/api'
 import LifeCycle from 'src/life-cycle'
-import lifeOpt from 'src/life-cycle/cycle-opt'
+import lifeOpt from 'src/life-cycle/life-opt'
 import defaultRouter from '../router/idnex'
 import log from 'src/util/log'
 import loadComponent from 'src/util/load-component'
@@ -27,7 +27,7 @@ import frame from '../frame'
 export default class Core {
   [key: string]: any
   private $dataCheck: DataCheck
-  private $dataMatch: DataMatch
+  public readonly $dataMatch: DataMatch
   public readonly version = version
   public readonly app: Component
   public readonly appOpts = {}
@@ -153,10 +153,10 @@ export default class Core {
    * 登录
    * @param  {object}   data 登录数据，{ username,password,... }必填
    */
-  public async login(data: any, tokenMatchStr: string) {
+  public async login(data: any) {
     this.$lifeCycle.beforeLogin.$emit(lifeOpt.beforeLoginOpt, this)
     const res = await this.$apiService?.$fetchData('system.login', data)
-    const token = this.$dataMatch.$matchData4String(tokenMatchStr, res)
+    const token = this.$dataMatch.$matchData4String(this.$frame.matched['token'] || 'data.data.token', res)
     this.$lifeCycle.afterLogin.$emit(lifeOpt.afterLoginOpt, token)
   }
 
@@ -220,7 +220,7 @@ export default class Core {
       const alias = this.$alias
       view = alias[compKey]
       if (!view) {
-        console.warn(`【alias】中未匹配到组件：${compKey}`)
+        console.error(`【alias】中未匹配到组件：${compKey}`)
       }
     } else {
       view = compKey

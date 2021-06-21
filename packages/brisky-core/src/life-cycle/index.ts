@@ -1,5 +1,5 @@
 import { EventBusService } from '@brisky/eventbus'
-import lifeOpt from './cycle-opt'
+import lifeOpt from './life-opt'
 export default class LifeCycle {
   // 配置生成
   beforeGetSystem: EventBusService = new EventBusService()

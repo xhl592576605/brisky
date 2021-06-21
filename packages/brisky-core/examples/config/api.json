@@ -1,0 +1,25 @@
+{
+  "system": {
+    "login": {
+      "url": "api/login",
+      "author": "brisky",
+      "method": "post",
+      "params": {
+        "sign": "brisky"
+      },
+      "data": {
+        "account": "SuperAdmin",
+        "password": "123456"
+      }
+    },
+    "getmenu": {
+      "url": "api/getmenu",
+      "author": "brisky",
+      "method": "get",
+      "certificate": true,
+      "params": {
+        "sign": "brisky"
+      }
+    }
+  }
+}
