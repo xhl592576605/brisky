@@ -14,4 +14,6 @@
     "return": "",
     "author": "brisky"
   },
+  "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true, //这个控制是否启用字体连字，true 启用，false 不启用，这里选择启用 
 }
