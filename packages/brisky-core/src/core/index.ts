@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-20 16:56:48
+ * @lastEditTime: 2021-06-21 19:51:44
  */
 import _ from 'lodash'
 import { App, Component, createApp, ref } from 'vue'
@@ -60,12 +60,11 @@ export default class Core {
     // 初始化config
     this.initConfig(option)
 
-    // 注册生命周期
-    this.registerLifeCycle(option.hooks)
-
     // 注册内部插件
     this.useBriskyPlugin(this.$plugins)
 
+    // 注册生命周期
+    this.registerLifeCycle(option.hooks)
     // 开始生命周期
 
     // init system config
@@ -167,7 +166,7 @@ export default class Core {
  */
   public async loginout(status: any) {
     this.$lifeCycle.beforeLogout.$emit(lifeOpt.beforeLogoutOpt, status)
-    // this.Token && await this.$apiService?.$fetchData('system.loginout')
+    this.Token && await this.$apiService?.$fetchData('system.loginout')
     this.$lifeCycle.afterLogout.$emit(lifeOpt.afterLogoutOpt, status)
   }
 

@@ -65,7 +65,6 @@
         const {
           module
         } = meta
-        debugger
         return h(module)
       },
       login: {
@@ -116,7 +115,7 @@
           }, $core))
           setTimeout(() => {
             // 测试跳转,并测试404
-            $core.$router.push('/123')
+            $core.$router.push('/three')
             console.log($core.$router)
           }, 3000)
         }
