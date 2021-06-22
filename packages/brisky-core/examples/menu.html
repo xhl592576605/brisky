@@ -108,31 +108,7 @@
     }
     $core.init({
       apiServiceOpt: {
-        api: {
-          system: {
-            login: {
-              url: "api/login",
-              author: "brisky",
-              method: "post",
-              params: {
-                sign: "brisky"
-              },
-              data: {
-                account: "SuperAdmin",
-                password: "123456"
-              }
-            },
-            getmenu: {
-              url: "api/getmenu",
-              author: "brisky",
-              method: "get",
-              certificate: true,
-              params: {
-                sign: "brisky"
-              }
-            }
-          }
-        }
+        api: './config/api.json'
       },
       routers: {
         history: VueRouter.createWebHashHistory(),
@@ -141,7 +117,10 @@
     })
 
     setTimeout(()=>{
-      $core.login({})
+      $core.login({
+        account: "SuperAdmin11",
+        password: "12345611"
+      })
     },1000)
   </script>
 </body>

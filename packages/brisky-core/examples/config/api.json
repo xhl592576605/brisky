@@ -1,7 +1,7 @@
 {
   "system": {
     "login": {
-      "url": "api/login",
+      "url": "/examples/api/login",
       "author": "brisky",
       "method": "post",
       "params": {
@@ -14,6 +14,15 @@
     },
     "getmenu": {
       "url": "api/getmenu",
+      "author": "brisky",
+      "method": "get",
+      "certificate": true,
+      "params": {
+        "sign": "brisky"
+      }
+    },
+    "getData": {
+      "url": "/examples/api/getData",
       "author": "brisky",
       "method": "get",
       "certificate": true,

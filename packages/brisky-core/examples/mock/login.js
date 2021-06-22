@@ -1,4 +1,4 @@
-Mock.mock('examples/api/login', 'post', () => {
+Mock.mock(/examples\/api\/login/, 'post', () => {
   return {
     success: true,
     data: {

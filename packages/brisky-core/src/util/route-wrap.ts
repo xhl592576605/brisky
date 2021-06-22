@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-20 15:17:56
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-22 00:10:21
+ * @lastEditTime: 2021-06-22 23:41:01
  */
 
 import core from "src/core"
@@ -37,7 +37,7 @@ const metaWrap = ({ meta = {}, component }: any, $core: core) => {
   }
 }
 
-const routeWrap = (route: RouteRecordRaw, $core: core) => {
+const routeWrap = (route: RouteRecordRaw | any, $core: core) => {
   const meta = metaWrap(route, $core)
   const component = meta.module
   return Object.assign({}, route, { component, meta })

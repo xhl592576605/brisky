@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 17:20:04
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-21 23:49:56
+ * @lastEditTime: 2021-06-22 23:52:05
  */
 
 
@@ -22,6 +22,7 @@ export default class CoreSystemPlugin implements BriskyPlugin {
   }
 
   apply = ($core: core) => {
+    // 定义$frame 并加载配置
     $core.$lifeCycle.awaitGetSystem.$on(lifeOpt.awaitGetSystemOpt, async ($core: core) => {
       let config = window.$frame || {}
       config = await loadConfig(config)
@@ -29,6 +30,7 @@ export default class CoreSystemPlugin implements BriskyPlugin {
       return config
     })
 
+    // 定义$system 别名
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
       $core.defineDynamicProxy('$system', $core.$frame)
       $core.defineDynamicProxy('$alias', $core.$frame?.alias || {})

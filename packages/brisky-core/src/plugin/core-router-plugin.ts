@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 18:52:17
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-21 23:50:04
+ * @lastEditTime: 2021-06-22 23:53:28
  */
 
 import core from "src/core"
@@ -22,6 +22,7 @@ export default class CoreRouterPlugin implements BriskyPlugin {
     this.name = 'core-couter'
   }
   apply = ($core: core) => {
+    //定义配置路由
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
       const $router = $core.$router as Router
       const { login = {}, routes = [] } = $core.$frame
@@ -56,6 +57,7 @@ export default class CoreRouterPlugin implements BriskyPlugin {
       log('路由加载完毕', $core.$router)
     })
 
+    //重写$router的addRoute方法，用于保存返回函数，以便在登出的时候移除路由
     $core.$lifeCycle.afterCreateApp.$on(lifeOpt.afterCreateAppOpt, ($core: core) => {
       let $router = $core.$router as Router
       const _addRoute = $router.addRoute
@@ -69,6 +71,7 @@ export default class CoreRouterPlugin implements BriskyPlugin {
       }
     })
 
+    //登出是 菜单路由要移除
     $core.$lifeCycle.afterLogout.$on(lifeOpt.afterLogoutOpt, () => {
       let dynamicRoutes = $core.dynamicRoutes || []
       dynamicRoutes.forEach((item: any) => {
