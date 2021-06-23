@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-23 23:27:23
+ * @lastEditTime: 2021-06-23 23:33:13
  */
 
 import core from "src/core"
@@ -47,6 +47,10 @@ export default class CoreTokenPlugin implements BriskyPlugin {
           _open(url)
         }
       }
+    })
+
+    $core.$lifeCycle.afterCoreReady.$on(lifeOpt.afterCoreReadyOpt, ($core: core) => {
+
     })
   }
 }
