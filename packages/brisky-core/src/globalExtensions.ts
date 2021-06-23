@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
 declare global {
   interface Window {
     $core?: core,
-    $frame?: any
+    $frame?: any,
+    $sysId: string
   }
 }

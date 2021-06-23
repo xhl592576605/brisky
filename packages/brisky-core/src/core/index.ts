@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-22 21:22:21
+ * @lastEditTime: 2021-06-23 23:29:15
  */
 import _ from 'lodash'
 import { App, Component, createApp, ref } from 'vue'
@@ -175,14 +175,14 @@ export default class Core {
    * @param prop 
    * @param value 
    */
-  public defineDynamicProxy(prop: string, value: any) {
+  public defineDynamicProxy(prop: string, value: any, isReadonly = false) {
     let __value__ = ref(value)
     const KEY = prop
     Object.defineProperty(this, KEY, {
       get: () => {
         return __value__.value
       },
-      set: (val: any) => {
+      set: isReadonly ? () => { } : (val: any) => {
         __value__.value = val
       }
     })

@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 18:52:17
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-22 23:53:28
+ * @lastEditTime: 2021-06-23 23:30:03
  */
 
 import core from "src/core"
@@ -52,7 +52,7 @@ export default class CoreRouterPlugin implements BriskyPlugin {
         }).map((route: any) => {
           return routeWrap(route, $core)
         })
-      $core.defineDynamicProxy('staticRoutes', options.routes)
+      $core.defineDynamicProxy('staticRoutes', options.routes,true)
       $core.$router = createRouter(options)
       log('路由加载完毕', $core.$router)
     })
