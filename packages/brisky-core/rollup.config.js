@@ -75,7 +75,10 @@ function createConfig (format, output, plugins = []) {
     '@brisky/api': 'BriskyApi',
     'vuex': 'Vuex',
     'vue': 'Vue',
-    'vue-router': 'VueRouter'
+    'vue-router': 'VueRouter',
+    'crypto': 'crypto',
+    'js-cookie': 'Cookies',
+    'lodash': '_'
   }
 
   const isProductionBuild = /\.prod\.js$/.test(output.file)
@@ -118,7 +121,8 @@ function createConfig (format, output, plugins = []) {
     'vue-router',
     '@brisky/eventbus',
     '@brisky/util',
-    '@brisky/api'
+    '@brisky/api',
+    'js-cookie'
   ]
 
   const nodePlugins = [resolve(), commonjs()]

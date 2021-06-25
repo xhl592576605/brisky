@@ -1,3 +1,4 @@
+import CoreAuthPlugin from "./core-auth-plugin"
 import CoreMenuPlugin from "./core-menu-plugin"
 import CoreRouterPlugin from "./core-router-plugin"
 import CoreSystemPlugin from "./core-system-plugin"
@@ -9,5 +10,6 @@ export default [
   new CoreRouterPlugin(),
   new CoreUserPlugin(),
   new CoreMenuPlugin(),
-  new CoreTokenPlugin()
+  new CoreTokenPlugin(),
+  new CoreAuthPlugin()
 ]

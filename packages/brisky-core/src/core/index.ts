@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-23 23:29:15
+ * @lastEditTime: 2021-06-24 23:38:24
  */
 import _ from 'lodash'
 import { App, Component, createApp, ref } from 'vue'
@@ -156,7 +156,7 @@ export default class Core {
   public async login(data: any) {
     this.$lifeCycle.beforeLogin.$emit(lifeOpt.beforeLoginOpt, this)
     const res = await this.$apiService?.$fetchData('system.login', data)
-    const token = this.$dataMatch.$matchData4String(this.$frame.matched?.token || '{data.data.token}', res)
+    const token = this.$dataMatch.$matchData4Object(this.$frame.matched?.data || '{data.data}', res)
     this.$lifeCycle.afterLogin.$emit(lifeOpt.afterLoginOpt, token)
   }
 
