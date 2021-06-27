@@ -24,7 +24,7 @@ var BriskyApi = (function (exports, axios, _, Cookies) {
    * @email: 592576605@qq.com
    * @date: 2021-05-27 15:42:14
    * @lastEditors: brisky
-   * @lastEditTime: 2021-06-09 20:12:48
+   * @lastEditTime: 2021-06-09 20:21:02
    */
   class DataCheck {
       /**
@@ -41,7 +41,7 @@ var BriskyApi = (function (exports, axios, _, Cookies) {
        * @returns
        */
       $isArray(obj) {
-          return Array.isArray(obj) || true;
+          return Array.isArray(obj);
       }
       /**
        *  是否是字符串
@@ -186,7 +186,7 @@ var BriskyApi = (function (exports, axios, _, Cookies) {
    * @email: 592576605@qq.com
    * @date: 2021-05-27 19:28:55
    * @lastEditors: brisky
-   * @lastEditTime: 2021-06-19 12:53:27
+   * @lastEditTime: 2021-06-27 01:10:47
    */
   const CancelToken = axios__default.CancelToken;
   class ApiService {

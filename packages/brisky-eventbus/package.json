@@ -15,7 +15,7 @@
     "build": "npm run \"build:ts\" && npm run build:dts",
     "build:ts": "rollup -c rollup.config.js",
     "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-eventbus.d.ts ",
-    "show":"yalc installations show",
+    "show": "yalc installations show",
     "async": "npm run build && yalc push --no-scripts",
     "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\""
   },
@@ -61,10 +61,9 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5",
     "yalc": "^1.0.0-pre.53"
-
   },
   "dependencies": {
-    "@brisky/util": "file:../brisky-util",
+    "@brisky/util": "file:.yalc/@brisky/util",
     "tapable": "^2.2.0"
   }
 }

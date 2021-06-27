@@ -13,7 +13,7 @@ var BriskyUtil = (function (exports) {
    * @email: 592576605@qq.com
    * @date: 2021-05-27 15:42:14
    * @lastEditors: brisky
-   * @lastEditTime: 2021-06-09 20:12:48
+   * @lastEditTime: 2021-06-09 20:21:02
    */
   class DataCheck {
       /**
@@ -30,7 +30,7 @@ var BriskyUtil = (function (exports) {
        * @returns
        */
       $isArray(obj) {
-          return Array.isArray(obj) || true;
+          return Array.isArray(obj);
       }
       /**
        *  是否是字符串
@@ -273,6 +273,28 @@ var BriskyUtil = (function (exports) {
       }
   }
 
+  /*
+   * @description: AsyncConstructor
+   * @version: 1.0
+   * @autor: brisky
+   * @email: 592576605@qq.com
+   * @date: 2021-06-27 00:57:39
+   * @lastEditors: brisky
+   * @lastEditTime: 2021-06-27 00:58:16
+   */
+  class AsyncConstructor {
+      then;
+      constructor(asyncConstructor) {
+          const init = (async () => {
+              await asyncConstructor();
+              delete this.then;
+              return this;
+          })();
+          this.then = init.then.bind(init);
+      }
+  }
+
+  exports.AsyncConstructor = AsyncConstructor;
   exports.DataCheck = DataCheck;
   exports.DataMatch = DataMatch;
   exports.String2Function = String2Function;

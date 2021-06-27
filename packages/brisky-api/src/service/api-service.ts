@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-05-27 19:28:55
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-19 12:53:27
+ * @lastEditTime: 2021-06-27 01:10:47
  */
 
 import _ from 'lodash'
@@ -37,7 +37,7 @@ export default class ApiService {
   /**
    * 动态加载api配置
    */
-  async loadServiceConfig(): Promise<any> {
+  public async loadServiceConfig(): Promise<any> {
     const { api } = this.option
     const conf = await $loadConfig(api)
     this.$dataCheck.$isObject(conf) &&

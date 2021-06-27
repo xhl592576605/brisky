@@ -21,8 +21,8 @@
         "sign": "brisky"
       }
     },
-    "getData": {
-      "url": "/examples/api/getData",
+    "user": {
+      "url": "/examples/api/getUser",
       "author": "brisky",
       "method": "get",
       "certificate": true,

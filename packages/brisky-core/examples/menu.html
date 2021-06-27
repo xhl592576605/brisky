@@ -36,6 +36,7 @@
   <script src="./js/mock/mock.js"></script>
   <script src="./mock/login.js"></script>
   <script src="./mock/menu.js"></script>
+  <script src="./mock/user.js"></script>
   <!--brisky/util-->
   <script src="./js/@brisky/util/brisky-util.global.js"></script>
   <!--brisky/eventbus-->
@@ -74,9 +75,14 @@
       login: {
         path: '/login',
         component: '../examples/component/hello-word/index.js',
+        msg: 'login'
       },
       alias: {
-        'exception-404': '../examples/component/exception-404/index.js'
+        'layout-spa': '../examples/component/exception-404/index.js',
+        'layout-nav': '../examples/component/exception-404/index.js',
+        'vessel-blank': '../examples/component/exception-404/index.js',
+        'exception-404': '../examples/component/exception-404/index.js',
+        'exception-501': '../examples/component/exception-404/index.js',
       },
       routes: [{
           path: '/',
@@ -85,8 +91,7 @@
             moduleConfig: {
               msg: 'home'
             }
-          }
-
+          },
         }, {
           path: '/first',
           component: '../examples/component/hello-word/index.js',
@@ -117,12 +122,24 @@
       }
     })
 
-    setTimeout(()=>{
-      $core.login({
+    // 模拟从登录到跳转路由到登出 若是已登录直接跳转路由
+    setTimeout(() => {
+      !$core.AUTHORIZED && $core.login({
         account: "SuperAdmin11",
         password: "12345611"
       })
-    },1000)
+      setTimeout(() => {
+        // $core.$router.push('/two').then(() => {
+
+        // })
+        $core.$router.push('/12').then(() => {
+          setTimeout(() => {
+            $core.loginout()
+          }, 5000)
+        })
+
+      }, 2000)
+    }, 5000)
   </script>
 </body>
 

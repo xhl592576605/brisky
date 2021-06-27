@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 18:52:17
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-23 23:30:03
+ * @lastEditTime: 2021-06-27 21:16:57
  */
 
 import core from "src/core"
@@ -45,14 +45,16 @@ export default class CoreRouterPlugin implements BriskyPlugin {
         .concat(options.routes as any[])
         .concat(routes)
         .map((route: any) => {
+          let authorized = (route.authorized === undefined) ? true : route.authorized // 配置路由默认免鉴权
           return {
             ...route,
-            authorized: (route.authorized === undefined) ? true : route.authorized // 配置路由默认免鉴权
+            meta: { ...route.meta, authorized },
+            authorized
           }
         }).map((route: any) => {
           return routeWrap(route, $core)
         })
-      $core.defineDynamicProxy('staticRoutes', options.routes,true)
+      $core.defineDynamicProxy('staticRoutes', options.routes, true)
       $core.$router = createRouter(options)
       log('路由加载完毕', $core.$router)
     })
@@ -74,12 +76,10 @@ export default class CoreRouterPlugin implements BriskyPlugin {
     //登出是 菜单路由要移除
     $core.$lifeCycle.afterLogout.$on(lifeOpt.afterLogoutOpt, () => {
       let dynamicRoutes = $core.dynamicRoutes || []
-      dynamicRoutes.forEach((item: any) => {
-        _.remove(dynamicRoutes, (i: any) => {
-          return i.route === item.route
-        })
-        item.removeRoute && item.removeRoute()
-      })
+      for (const item of dynamicRoutes) {
+        item.removeRoute()
+      }
+      $core.dynamicRoutes = []
     })
   }
 

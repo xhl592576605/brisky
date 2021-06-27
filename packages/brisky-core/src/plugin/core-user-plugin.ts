@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-22 23:54:08
+ * @lastEditTime: 2021-06-27 12:40:49
  */
 
 import core from "src/core"
@@ -27,16 +27,16 @@ export default class CoreUserPlugin implements BriskyPlugin {
 
     // 获取用户信息
     $core.$lifeCycle.afterAuthSuccess.$on(lifeOpt.afterAuthSuccessOpt, async ($core: core) => {
-      const Token = $core.Token
-      if (!Token) {
-        return
+      const TOKEN = $core.TOKEN
+      if (!TOKEN) {
+        return new Promise<void>(resolve => resolve())
       }
-      if (!this.cache[Token]) {
-        return
+      if (this.cache[TOKEN]) {
+        return new Promise<void>(resolve => resolve())
       }
       const result = await $core.$apiService?.$fetchData('system.user')
-      const user = $core.$dataMatch.$matchData4Object(result, $core.$frame.matched?.user || '{data.data}')
-      $core.user && ($core.user = user)
+      const user = $core.$dataMatch.$matchData4String($core.$frame.matched?.user || '@data.data@', result)
+      $core.user && ($core.user = this.cache[TOKEN] = user)
     })
 
     // 登出用户信息删除

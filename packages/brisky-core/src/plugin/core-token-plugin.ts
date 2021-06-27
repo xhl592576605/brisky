@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-25 21:14:42
+ * @lastEditTime: 2021-06-27 13:09:01
  */
 import { Router } from "vue-router"
 import core from "src/core"
@@ -71,12 +71,13 @@ export default class CoreTokenPlugin implements BriskyPlugin {
 
     // 初始化token refresh_token
     $core.$lifeCycle.awaitCoreReady.$on(lifeOpt.awaitCoreReadyOpt, async ($core: core) => {
+      this.sysId = this.sysId || $core.$frame.sysId
       const sign = `${this.sysId}_${location.port}`
       this.tokenSigner = new Signer({ sign, name: 'access_token' })
       this.refreshTokenSigner = new Signer({ sign, name: 'refresh_token' })
-      $core.defineDynamicProxy('AUTHORIZED', !!this.ACCESS_TOKEN, true)
-      $core.defineDynamicProxy('TOKEN', this.ACCESS_TOKEN, true)
-      $core.defineDynamicProxy('PAYLOAD', parseToken(this.ACCESS_TOKEN), true)
+      $core.defineDynamicProxy('AUTHORIZED', !!this.ACCESS_TOKEN)
+      $core.defineDynamicProxy('TOKEN', this.ACCESS_TOKEN)
+      $core.defineDynamicProxy('PAYLOAD', parseToken(this.ACCESS_TOKEN))
       if (!this.ACCESS_TOKEN && this.REFRESH_TOKEN) {
         return this.refresh($core)
       } else {
@@ -85,7 +86,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
     })
 
     //定期检查token
-    $core.$lifeCycle.afterAuthSuccess.$on(lifeOpt.afterAuthSuccessOpt, ($core: core) => {
+    $core.$lifeCycle.afterAuthSuccess.$on(lifeOpt.afterAuthSuccessOpt, async ($core: core) => {
       this.regularCheck($core)
     })
 
@@ -93,12 +94,18 @@ export default class CoreTokenPlugin implements BriskyPlugin {
     $core.$lifeCycle.afterLogin.$on(lifeOpt.afterLoginOpt, (token: any) => {
       this.lock = null
       this.write(token)
+      $core.AUTHORIZED = !!this.ACCESS_TOKEN
+      $core.TOKEN = this.ACCESS_TOKEN
+      $core.PAYLOAD = parseToken(this.ACCESS_TOKEN)
     })
 
     // 登出删除token
     $core.$lifeCycle.afterLogout.$on(lifeOpt.afterLogoutOpt, () => {
       this.erase()
       this.cancelRegularCheck()
+      $core.AUTHORIZED = !!this.ACCESS_TOKEN
+      $core.TOKEN = this.ACCESS_TOKEN
+      $core.PAYLOAD = parseToken(this.ACCESS_TOKEN)
     })
 
     // 每次请求带上sysId
@@ -183,7 +190,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
    */
   refresh($core: core) {
     return $core?.$apiService?.$fetchData('system.refreshToken').then((res: any) => {
-      const token = $core.$dataMatch.$matchData4Object($core.$frame.matched?.data || '{data.data}', res)
+      const token = $core.$dataMatch.$matchData4String($core.$frame.matched?.data || '@data.data@', res)
       this.write(token)
     }).catch((err: any) => {
       log('刷新token失败', err)
@@ -194,8 +201,8 @@ export default class CoreTokenPlugin implements BriskyPlugin {
    * 保存token refreshToken
    * @param token 
    */
-  write(token: { tokenType: any; accessToken: any; expiresIn: any; refreshToken: any; refreshTokenExpiresIn: any }) {
-    this.tokenSigner.write(`${token.tokenType || 'Bearer'} ${token.accessToken}`, token.expiresIn)
+  write(token: { tokenType: any; accessToken: any; token: any; expiresIn: any; refreshToken: any; refreshTokenExpiresIn: any }) {
+    this.tokenSigner.write(`${token.tokenType || 'Bearer'} ${token.accessToken || token.token}`, token.expiresIn)
     this.refreshTokenSigner.write(`${token.refreshToken}`, token.refreshTokenExpiresIn)
   }
 

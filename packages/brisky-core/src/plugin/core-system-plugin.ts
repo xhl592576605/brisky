@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 17:20:04
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-22 23:52:05
+ * @lastEditTime: 2021-06-27 01:13:44
  */
 
 
@@ -27,6 +27,10 @@ export default class CoreSystemPlugin implements BriskyPlugin {
       let config = window.$frame || {}
       config = await loadConfig(config)
       window.$frame = config
+      const { $apiService } = $core
+      if (Object.keys($apiService?.serviceConfigs || {}).length == 0) {
+        await $apiService?.loadServiceConfig()
+      }
       return config
     })
 

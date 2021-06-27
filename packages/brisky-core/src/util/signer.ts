@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-24 22:42:12
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-24 23:08:48
+ * @lastEditTime: 2021-06-27 00:41:11
  */
 
 import Cookie from 'js-cookie'
@@ -50,7 +50,7 @@ const PENCILS = {
 
 export default class Signer {
   name: string
-  sign: string
+  sign: any
   target: string
   constructor({ name, sign = location.port, target = 'cookie' }: any = {}) {
     this.name = name
@@ -58,13 +58,15 @@ export default class Signer {
     this.target = target
   }
   read() {
-    PENCILS[this.target].read(this.sign)
+    return PENCILS[this.target].read(this.$sign)
   }
   write(value: any, expires = 86400) {
-    PENCILS[this.target].write(this.sign, value, expires)
+    PENCILS[this.target].write(this.$sign, value, expires)
   }
   erase() {
-    PENCILS[this.target].erase(this.sign)
+    PENCILS[this.target].erase(this.$sign)
   }
-
+  get $sign() {
+    return `__${typeof this.sign === 'function' ? this.sign() : this.sign}__${this.name}`
+  }
 }

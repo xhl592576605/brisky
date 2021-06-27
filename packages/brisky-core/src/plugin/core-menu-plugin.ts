@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-22 23:55:40
+ * @lastEditTime: 2021-06-27 12:58:48
  */
 
 import qs from 'query-string'
@@ -26,28 +26,31 @@ export default class CoreMenuPlugin implements BriskyPlugin {
 
     // 定义菜单权限等
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
-      $core.defineDynamicProxy('menu', $core.$frame.menu || [])
+      $core.defineDynamicProxy('menus', $core.$frame.menu || [])
       $core.defineDynamicProxy('meta', $core.$router?.currentRoute?.value.meta)
       $core.defineDynamicProxy('permissions', $core.$router?.currentRoute?.value.meta?.permissions)
     })
 
     // 获取菜单并创建菜单路由
     $core.$lifeCycle.afterAuthSuccess.$on(lifeOpt.afterAuthSuccessOpt, async ($core: core) => {
-      const { userId } = $core?.user
-      if (this.cache[userId]) {
-        return
+      const { id, userId } = $core?.user
+      if (!id && !userId) {
+        return new Promise<void>(resolve => resolve())
+      }
+      if (this.cache[id || userId]) {
+        return new Promise<void>(resolve => resolve())
       }
       const menusRow = await this.getMenus($core)
       if (!menusRow) {
-        return
+        return new Promise<void>(resolve => resolve())
       }
       const reorganizeMenus = this.reorganizeMenus($core, menusRow)
       const { menusCachedById, menusCachedByPid } = this.menusCached($core, reorganizeMenus)
       const routes = this.routesGenerate($core, menusCachedById, menusCachedByPid)
-      var menus = this.menusResolve($core, routes)
+      const menus = this.menusResolve($core, routes)
       log('菜单', menus)
       this.addRoutes($core, routes, menus)
-      $core.menus = this.cache[userId] = menus
+      $core.menus = this.cache[id || userId] = menus
     })
 
     //登出，菜单删除
@@ -139,7 +142,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
         path: menu.path,
         query: menu.query,
         params: menu.params,
-        name: `${menu.label}_${(menu.id).substring(0, 8)}`,
+        name: `${menu.label}_${(`${menu.id}`).substring(0, 8)}`,
         redirect,
         meta: menuToMeta(menu)
       }, $core)
@@ -177,11 +180,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
     return menus.map((menu: any) => {
       const layoutKey = menu.layoutKey || 'layout-nav'
       const vesselKey = menu.vesselKey || 'vessel-blank'
-      const moduleKey = menu.accessible
-        ? menu.moduleKey
-          ? menu.moduleKey
-          : 'exception-501'
-        : 'exception-401'
+      const moduleKey = menu.moduleKey ? menu.moduleKey : 'exception-401'
 
       let url = menu.url || Math.random().toString(16).substring(2, 6)
       // 是否有协议头
@@ -201,7 +200,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
       const query = qs.parse(url.split('?')[1] || '')
       const path = url.split('?')[0]
       return {
-        id: menu.menuId,
+        id: menu.id || menu.menuId,
         href: url,
         path,
         query,
@@ -211,8 +210,8 @@ export default class CoreMenuPlugin implements BriskyPlugin {
         parent: undefined,
         parentId: menu.parentId,
         default: !!menu.isDefault,
-        label: menu.menuName || menu.label,
-        icon: menu.image || menu.icon,
+        label: menu.label || menu.menuName,
+        icon: menu.icon || menu.image,
         // 导航打开的方式
         target: menu.target,
         layoutKey: layoutKey,
@@ -234,7 +233,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
    */
   async getMenus($core: core) {
     const result = await $core.$apiService?.$fetchData('system.menu')
-    const menu = $core.$dataMatch.$matchData4Object(result, $core.$frame.matched?.menu || '{data.data}')
+    const menu = $core.$dataMatch.$matchData4String($core.$frame.matched?.menu || '@data.data@', result)
     return menu
   }
 
