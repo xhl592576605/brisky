@@ -5,6 +5,7 @@
     "children": [
       "/ApiService/quick-start.md",
       "/ApiService/options.md",
+      "/ApiService/api.md",
       "/ApiService/functions.md"
     ]
   },

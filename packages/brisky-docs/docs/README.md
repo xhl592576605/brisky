@@ -5,9 +5,9 @@ actionText: 快速上手 →
 actionLink: /ApiService/quick-start.md
 features:
 - title: ApiService
-  details: 以axios为核心，统一管理的接口配置，可定制的拦截机制，规范的调用函数，即开即用的请求类库
+  details: 以"axios"为核心，统一管理的接口配置，可定制的拦截机制，规范的调用函数，即开即用的请求类库
 - title: EventBus
-  details: 以“tapble”,可以使用aysnc，await的事件总线，brisky生命周期的底层机制
+  details: 以"tapble",可以使用aysnc，await的事件总线，brisky生命周期的底层机制
 - title: Core
   details: brisky的核心，一套生命周期，可扩展的插件，一个可定制化的vueApp
 - title: Views
