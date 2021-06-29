@@ -1,14 +1,20 @@
 ---
 home: true
-heroImage: /images/photo.jpg
+heroImage: /images/logo.png
 actionText: 快速上手 →
 actionLink: /ApiService/index.md
 features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+- title: ApiService
+  details: 以axios为核心，统一管理的接口配置，可定制的拦截机制，规范的调用函数，即开即用的请求类库
+- title: EventBus
+  details: 以“tapble”,可以使用aysnc，await的事件总线，brisky生命周期的底层机制
+- title: Core
+  details: brisky的核心，一套生命周期，可扩展的插件，一个可定制化的vueApp
+- title: Views
+  details: brisky的核心业务组件，模块化编译，按需引用，即开即用
+- title: Cli
+  details: 一键生成Brisky的模板，快速开发
+- title: Admin
+  details: 一套Brisky的cms框架，可以快速二开的前端admin框架
 footer: MIT Licensed | Copyright © 2021-Brisky
 ---

@@ -1,8 +1,53 @@
 [
   {
     "isGroup": true,
-    "title":"ApiService",
+    "title": "ApiService",
     "text": "ApiService",
+    "children": [
+      "/ApiService/index1.md",
+      "/ApiService/index2.md"
+    ]
+  },
+  {
+    "isGroup": true,
+    "title": "EventBus",
+    "text": "EventBus",
+    "children": [
+      "/ApiService/index1.md",
+      "/ApiService/index2.md"
+    ]
+  },
+  {
+    "isGroup": true,
+    "title": "Core",
+    "text": "Core",
+    "children": [
+      "/ApiService/index1.md",
+      "/ApiService/index2.md"
+    ]
+  },
+  {
+    "isGroup": true,
+    "title": "Views",
+    "text": "Views",
+    "children": [
+      "/ApiService/index1.md",
+      "/ApiService/index2.md"
+    ]
+  },
+  {
+    "isGroup": true,
+    "title": "Cli",
+    "text": "Cli",
+    "children": [
+      "/ApiService/index1.md",
+      "/ApiService/index2.md"
+    ]
+  },
+  {
+    "isGroup": true,
+    "title": "Admin",
+    "text": "Admin",
     "children": [
       "/ApiService/index1.md",
       "/ApiService/index2.md"
