@@ -1,56 +1,36 @@
 [
   {
-    "isGroup": true,
     "title": "ApiService",
     "text": "ApiService",
     "children": [
-      "/ApiService/index1.md",
-      "/ApiService/index2.md"
+      "/ApiService/quick-start.md",
+      "/ApiService/options.md",
+      "/ApiService/functions.md"
     ]
   },
   {
-    "isGroup": true,
     "title": "EventBus",
     "text": "EventBus",
-    "children": [
-      "/ApiService/index1.md",
-      "/ApiService/index2.md"
-    ]
+    "children": []
   },
   {
-    "isGroup": true,
     "title": "Core",
     "text": "Core",
-    "children": [
-      "/ApiService/index1.md",
-      "/ApiService/index2.md"
-    ]
+    "children": []
   },
   {
-    "isGroup": true,
     "title": "Views",
     "text": "Views",
-    "children": [
-      "/ApiService/index1.md",
-      "/ApiService/index2.md"
-    ]
+    "children": []
   },
   {
-    "isGroup": true,
     "title": "Cli",
     "text": "Cli",
-    "children": [
-      "/ApiService/index1.md",
-      "/ApiService/index2.md"
-    ]
+    "children": []
   },
   {
-    "isGroup": true,
     "title": "Admin",
     "text": "Admin",
-    "children": [
-      "/ApiService/index1.md",
-      "/ApiService/index2.md"
-    ]
+    "children": []
   }
 ]

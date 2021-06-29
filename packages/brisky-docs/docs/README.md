@@ -2,7 +2,7 @@
 home: true
 heroImage: /images/logo.png
 actionText: 快速上手 →
-actionLink: /ApiService/index.md
+actionLink: /ApiService/quick-start.md
 features:
 - title: ApiService
   details: 以axios为核心，统一管理的接口配置，可定制的拦截机制，规范的调用函数，即开即用的请求类库
