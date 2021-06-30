@@ -4,6 +4,8 @@
 node_modules
 package-lock.json
 docs/.vuepress/dist
+docs/.vuepress/.cache
+docs/.vuepress/.temp
 
 # local env files
 .env.local

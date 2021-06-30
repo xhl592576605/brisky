@@ -42,3 +42,9 @@ const apiService=new ApiService({
 ``` js
 apiService.$fetchData('system.login')
 ```
+## 依赖
+``` sh
+npm i lodash
+npm i axios
+npm i js-cookie
+```

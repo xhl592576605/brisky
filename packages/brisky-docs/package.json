@@ -21,7 +21,12 @@
   "bugs": {
     "url": "https://github.com/xhl592576605/brisky/issues"
   },
+  "dependencies": {
+    "vuepress": "^2.0.0-beta.20"
+  },
   "devDependencies": {
-    "vuepress": "^1.8.2"
+    "@vue/component-compiler-utils": "^3.2.2",
+    "@vuepress/plugin-pwa": "^2.0.0-beta.20",
+    "@vuepress/plugin-search": "^2.0.0-beta.20"
   }
 }

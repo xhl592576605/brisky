@@ -12,7 +12,10 @@
   {
     "title": "EventBus",
     "text": "EventBus",
-    "children": []
+    "children": [
+      "/EventBus/quick-start.md",
+      "/EventBus/functions.md"
+    ]
   },
   {
     "title": "Core",
