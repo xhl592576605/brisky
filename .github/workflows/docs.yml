@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Go Brisky/docs
-        run : cd ./packages/brisky/docs
+        run : cd ./packages/brisky-docs
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
