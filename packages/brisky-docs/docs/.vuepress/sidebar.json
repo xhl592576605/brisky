@@ -20,7 +20,12 @@
   {
     "title": "Core",
     "text": "Core",
-    "children": []
+    "children": [
+      "/Core/quick-start.md",
+      "/Core/life-cycle.md",
+      "/Core/option.md",
+      "/Core/frame.md"
+    ]
   },
   {
     "title": "Views",
