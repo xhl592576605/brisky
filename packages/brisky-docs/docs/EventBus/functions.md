@@ -1,8 +1,9 @@
-# 公共方法
+# 属性与方法
+## 公共方法
 
-## $on
+### $on
 注册一个唯一key，以及对应一个或过个的回调函数，回调函数会按照添加顺序依次触发，可以多次调用，已存在便是增加回调
-### 入参:   
+#### 入参:   
 - option：HookOption | string   
   设置注册参数，若是字符串则是key，其余默认，可以传入详细对象HookOption进行设置
 - fn:fn: Function | Function[]    
@@ -97,14 +98,14 @@ eventBusServie.$on({
   }])
 ```
 
-## $emit
+### $emit
 触发事件，调用回调
-### 入参:   
+#### 入参:   
 - option: BaseEventOption | string, 
  匹配key
 - ...params: any[]
  传递给回调函数的参数值
-### 返回值:
+#### 返回值:
 - 请求结果 promise
 
 例子：

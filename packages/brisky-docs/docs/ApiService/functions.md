@@ -1,16 +1,17 @@
-# 公共属性
-## serviceConfigs
+# 属性与方法
+## 公共属性
+### serviceConfigs
 api配置信息，转成对象存在这个值里面
-# 公共方法
+## 公共方法
 
-## $fetchData
+### $fetchData
 根据api配置信息，使用key请求接口
-### 入参:   
+#### 入参:   
 - apiChainKey   
   请求key值，对于api配置信息    
 - apiOpt    
   请求的数据,与axios一致   
-### 返回值:
+#### 返回值:
 - 请求结果 promise
 
 ```js
@@ -40,14 +41,14 @@ apiService.$fetchData('system.login',{
 ).then(res=>{})
 ```
 
-## $fetchDataByUrl
+### $fetchDataByUrl
 直接使用url请求数据
-### 入参:   
+#### 入参:   
 - url   
   即就是url   
 - apiOpt  
   请求的数据,与axios一致   
-### 返回值:
+#### 返回值:
 - 请求结果 promise
 
 ```js
@@ -78,9 +79,9 @@ apiService.$fetchDataByUrl('http://xx.xx.com/api/login',{
 ).then(res=>{})
 ```
 
-## $cancelFetchApi
+### $cancelFetchApi
 取消请求
-### 入参:   
+#### 入参:   
 - apiKey   
   apiChainKey或者url   
 
@@ -90,5 +91,5 @@ apiService.$cancelFetchApi('system.login')
 apiService.$cancelFetchApi('http://xx.xx.com/api/login')
 ```
 
-## disposeAxios
+### disposeAxios
 注销axios实例，每个ApiService中都有一个axios实例

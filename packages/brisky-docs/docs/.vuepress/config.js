@@ -15,7 +15,7 @@ module.exports = {
   serviceWorker: true, // 是否开启 PWA
   base: '/brisky-docs/', // 部署到github相关的配置
   markdown: {
-    lineNumbers: true // 代码块是否显示行号
+    lineNumbers: true, // 代码块是否显示行号
   },
   themeConfig: {
     lastUpdated: 'Last Updated',
@@ -26,7 +26,7 @@ module.exports = {
     ],
     sidebar: require("./sidebar"),
     displayAllHeaders: true,
-    //sidebarDepth: 2
+    sidebarDepth: 3
   },
   plugins: [
     [

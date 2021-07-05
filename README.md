@@ -8,7 +8,8 @@
 	4. 基于vue3的框架核心
 	5. 基于vue3的框架核心的功能组件
 	6. 一键式的cli命令
-
+## 文档地址
+[文档地址](https://xhl592576605.github.io/brisky-docs/)
 ### lerna管理
 - `lerna bootstrap`	安装依赖
   - `– --production --no-optional`	指定npm client的参数

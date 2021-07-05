@@ -1,3 +1,5 @@
+## 文档地址
+[文档地址](https://xhl592576605.github.io/brisky-docs/ApiService/quick-start.html)
 ### 类库模板
 ### 需要自行修改部分
   1. `api-extractor.json`14行的`brisky-package-tempalte`
