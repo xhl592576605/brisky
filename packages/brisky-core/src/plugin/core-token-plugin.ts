@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-27 13:09:01
+ * @lastEditTime: 2021-07-07 23:30:14
  */
 import { Router } from "vue-router"
 import core from "src/core"
@@ -111,7 +111,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
     // 每次请求带上sysId
     $core.$lifeCycle.onXhrOpen.$on(lifeOpt.onXhrOpenOpt, (xhr: any) => {
       const { url } = xhr
-      if (url.includes(($core.$apiService?.serviceConfigs as any)?.system?.login.url)) {
+      if (url.includes(($core.$apiService?.serviceConfigs as any)?.system?.login?.url)) {
         xhr.url = extendUrl(url, { sysId: this.sysId })
       }
       return xhr
@@ -120,7 +120,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
     // 若是刷新请求token 带上refresh_token
     $core.$lifeCycle.onXhrOpen.$on(lifeOpt.onXhrOpenOpt, (xhr: any) => {
       const { url } = xhr
-      if (url.includes(($core.$apiService?.serviceConfigs as any)?.system?.refreshToken.url)) {
+      if (url.includes(($core.$apiService?.serviceConfigs as any)?.system?.refreshToken?.url)) {
         xhr.url = extendUrl(url, { refreshToken: this.REFRESH_TOKEN })
       }
       return xhr

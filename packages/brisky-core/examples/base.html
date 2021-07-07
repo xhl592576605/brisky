@@ -74,8 +74,39 @@
       //     msg: 'brisky'
       //   })
       // }
+      proxy: [{
+        context: '/permissions/**',
+        target: function (method, url) {
+          return '/service/' + url
+        }
+      }]
     }
-    $core.init()
+    $core.init({
+      apiServiceOpt: {
+        api: {
+          system: {
+            login: {
+              url: "http://119.23.61.247:6005/permissions/account/login",
+              author: "brisky",
+              method: "post",
+              params: {
+                sign: "brisky"
+              },
+              data: {
+                account: "SuperAdmin",
+                password: "123456"
+              }
+            }
+          }
+        }
+      }
+    })
+    setTimeout(function () {
+      $core.login({
+        account: "SuperAdmin11",
+        password: "12345611"
+      })
+    }, 1500);
   </script>
 </body>
 

@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-25 21:14:24
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-27 21:29:05
+ * @lastEditTime: 2021-07-07 23:29:03
  */
 
 import _ from "lodash"
@@ -111,7 +111,7 @@ export default class CoreAuthPlugin implements BriskyPlugin {
     const routes = ($router as Router).getRoutes()
     return (
       // * 登录路由必须免登录
-      login.path === path ||
+      login?.path === path ||
       // $frame.routes && router.js#routes
       routes.some((route) => route.path === path && ((route as any).meta.authorized)) ||
       // $frame.authorized = [] 包含路径

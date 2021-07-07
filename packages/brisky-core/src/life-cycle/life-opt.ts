@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-09 22:05:02
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-21 23:29:33
+ * @lastEditTime: 2021-07-07 23:26:44
  */
 
 import { BaseEventOption, HookOption, TapableHookType } from "@brisky/eventbus"
@@ -139,21 +139,21 @@ const afterLogoutOpt: HookOption = {
 }
 const onXhrOpenOpt: HookOption = {
   ...baseOpt,
-  name: 'async.onXhrOpen',
+  name: 'onXhrOpen',
   hookType: TapableHookType.Waterfall,
   args: ['context'],
   callBack: []
 }
 const onXhrSendOpt: HookOption = {
   ...baseOpt,
-  name: 'async.onXhrSend',
+  name: 'onXhrSend',
   hookType: TapableHookType.Waterfall,
   args: ['core'],
   callBack: []
 }
 const onXhrChangeOpt: HookOption = {
   ...baseOpt,
-  name: 'async.onXhrChange',
+  name: 'onXhrChange',
   hookType: TapableHookType.Waterfall,
   args: ['core'],
   callBack: []

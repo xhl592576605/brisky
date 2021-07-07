@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:54:39
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-25 21:45:15
+ * @lastEditTime: 2021-07-06 22:13:40
  */
 
 export default {
@@ -32,6 +32,9 @@ export default {
     const day = now.getDate()
     return [year, month > 9 ? month : '0' + month, day].join('')
   },
+  // 是否为layout布局，若是，在router渲染组件会找layout组件，vessel组件
+  isLayout:true,
+  // 消息
   messages: {
     10000: '请登录',
     12000: '登录状态已过期',
