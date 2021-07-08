@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-07-06 23:08:33
  * @lastEditors: brisky
- * @lastEditTime: 2021-07-07 22:53:19
+ * @lastEditTime: 2021-07-08 22:02:53
  */
 
 const hijackingCache = new Map()
@@ -30,7 +30,7 @@ export function hijacking(target: any, options: any = {}, attach: any = window) 
     console.warn(options)
     return
   } else {
-    const proxy = function (...args: any[]) {
+    let proxy = function (this: any, ...args: any[]) {
       const nativeInstance = new target(args)
       const proxyInstance = this
 

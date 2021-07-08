@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-07-07 23:30:14
+ * @lastEditTime: 2021-07-08 21:52:12
  */
 import { Router } from "vue-router"
 import core from "src/core"
@@ -93,7 +93,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
     // 登录成功保存token
     $core.$lifeCycle.afterLogin.$on(lifeOpt.afterLoginOpt, (token: any) => {
       this.lock = null
-      this.write(token)
+      token && this.write(token)
       $core.AUTHORIZED = !!this.ACCESS_TOKEN
       $core.TOKEN = this.ACCESS_TOKEN
       $core.PAYLOAD = parseToken(this.ACCESS_TOKEN)
@@ -191,7 +191,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
   refresh($core: core) {
     return $core?.$apiService?.$fetchData('system.refreshToken').then((res: any) => {
       const token = $core.$dataMatch.$matchData4String($core.$frame.matched?.data || '@data.data@', res)
-      this.write(token)
+      token && this.write(token)
     }).catch((err: any) => {
       log('刷新token失败', err)
     })

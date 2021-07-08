@@ -17,7 +17,7 @@
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "noImplicitThis": false,
+    "noImplicitThis": true,
     "noImplicitReturns": true,
     "strict": true,
     "isolatedModules": false,

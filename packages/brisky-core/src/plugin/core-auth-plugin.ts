@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-25 21:14:24
  * @lastEditors: brisky
- * @lastEditTime: 2021-07-07 23:29:03
+ * @lastEditTime: 2021-07-08 21:58:11
  */
 
 import _ from "lodash"
@@ -37,9 +37,11 @@ export default class CoreAuthPlugin implements BriskyPlugin {
 
     // 登出时跳转登录页面
     $core.$lifeCycle.afterLogout.$on(lifeOpt.afterLogoutOpt, () => {
-      const { $router, $vm, $frame: { login: { path } } } = $core
+      const { $router, $vm, $frame = {} } = $core
       if ($vm) {
-        $router?.push(path).catch(() => { }) // ditto
+        const { login = {} } = $frame
+        const { path } = login
+        path && $router?.push(path).catch(() => { }) // ditto
       } else {
         // 当vm未实例时，路由跳转会失效，此时尝试强制刷新页面
         // *** 可能导致死循环

@@ -5,6 +5,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 
+// 若是有用到node原生模块，需要引用这个2个插件
+import builtins from 'rollup-plugin-node-builtins'
+
 const pkg = require('./package.json')
 const name = pkg.name
 
@@ -125,7 +128,7 @@ function createConfig (format, output, plugins = []) {
     'js-cookie'
   ]
 
-  const nodePlugins = [resolve(), commonjs()]
+  const nodePlugins = [builtins(),resolve(), commonjs()]//globals(), builtins(),
 
   return {
     input: `src/index.ts`,
