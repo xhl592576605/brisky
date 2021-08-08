@@ -2,6 +2,7 @@
 node_modules
 /dist
 public/resource/upload/*
+public/pages/js/*
 public/views/*
 views.local.ts
 report*
@@ -24,3 +25,5 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+.yalc
+yalc.lock

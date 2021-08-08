@@ -2,8 +2,9 @@
   "version": "v1",
   "packages": {
     "@brisky/vue-cli-plugin-pack": {
-      "signature": "0f03f01012bc445f4fe6f387ad83d6d5",
-      "file": true
+      "signature": "ee474581d71d215b04d95253fe7b125d",
+      "file": true,
+      "replaced": "file:../brisky-vue-cli-plugin"
     }
   }
 }

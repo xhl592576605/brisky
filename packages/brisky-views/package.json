@@ -1,6 +1,6 @@
 {
-  "name": "brisky-views",
-  "version": "0.1.0",
+  "name": "@brisky/views",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve -v ./views.conf.ts -d",
@@ -12,7 +12,9 @@
     "vue": "^3.0.4"
   },
   "devDependencies": {
+    "@brisky/vue-cli-plugin-pack": "file:.yalc/@brisky/vue-cli-plugin-pack",
     "@types/lodash": "^4.14.172",
+    "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
     "@vue/cli-plugin-babel": "~5.0.0-beta.2",
@@ -50,10 +52,5 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ],
-  "vuePlugins": {
-    "service": [
-      "cli/pack.js"
-    ]
-  }
+  ]
 }

@@ -2,18 +2,11 @@ module.exports = {
   devServer: {
     port: 3000, // * 开发端口
     historyApiFallback: {
-      rewrites: [{
-        from: '/admin/*',
-        to: '/pages/admin.html'
-      },
-      {
-        from: '/mobile/*',
-        to: '/pages/mobile.html'
-      },
-      {
-        from: '.*',
-        to: '/pages/index.html'
-      }
+      rewrites: [
+        {
+          from: '.*',
+          to: '/pages/index.html'
+        }
       ],
       htmlAcceptHeaders: ['text/html']
     },
