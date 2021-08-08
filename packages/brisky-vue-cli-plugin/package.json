@@ -2,33 +2,15 @@
   "name": "@brisky/vue-cli-plugin-pack",
   "version": "0.0.0",
   "description": "@brisky/vue-cli-plugin-pack",
-  "main": "dist/brisky-vue-cli-plugin-pack.cjs.js",
-  "unpkg": "dist/brisky-vue-cli-plugin-pack.global.js",
-  "jsdelivr": "dist/brisky-vue-cli-plugin-pack.global.js",
-  "module": "dist/brisky-vue-cli-plugin-pack.esm-bundler.js",
-  "umd": "dist/brisky-vue-cli-plugin-pack.umd.js",
-  "types": "dist/brisky-vue-cli-plugin-pack.d.ts",
+  "main": "index.js",
   "outputName": "BriskyPackageTemplate",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint \"src/**\" --fix  --ext .js，.jsx，.ts，.tsx --config .eslintrc.js ",
-    "build": "npm run \"build:ts\" && npm run build:dts",
-    "build:ts": "rollup -c rollup.config.js",
-    "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-vue-cli-plugin-pack.d.ts ",
-    "show": "yalc installations show",
-    "async": "npm run build && yalc push --no-scripts",
-    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xhl592576605/brisky.git"
   },
   "keywords": [],
-  "files": [
-    "dist/*.js",
-    "dist/brisky-vue-cli-plugin-pack.d.ts",
-    "README.md"
-  ],
   "author": "brisky",
   "license": "ISC",
   "bugs": {
@@ -36,30 +18,7 @@
   },
   "homepage": "https://github.com/xhl592576605/brisky#readme",
   "devDependencies": {
-    "@microsoft/api-extractor": "7.8.1",
-    "@rollup/plugin-alias": "^3.1.2",
-    "@rollup/plugin-commonjs": "^16.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^11.1.1",
-    "@rollup/plugin-replace": "^2.3.4",
-    "@rollup/plugin-strip": "^2.0.0",
-    "@types/js-cookie": "^2.2.6",
-    "@types/lodash": "^4.14.168",
-    "@typescript-eslint/eslint-plugin": "^2.16.0",
-    "@typescript-eslint/parser": "^2.16.0",
-    "babel-eslint": "^10.1.0",
-    "commander": "^8.1.0",
-    "eslint": "^7.27.0",
-    "lodash": "^4.17.20",
-    "nodemon": "^2.0.7",
-    "npm-run-all": "^4.1.5",
-    "rollup": "^2.39.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "ts-loader": "^8.0.17",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.5",
-    "yalc": "^1.0.0-pre.53"
+    "commander": "^8.1.0"
   },
   "dependencies": {}
 }

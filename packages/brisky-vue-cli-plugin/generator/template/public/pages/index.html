@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="/resource/favicon.ico">
+  <title>brisky</title>
+  <style>
+    #app {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+    }
+  </style>
+  <!-- vue -->
+  <script src="/resource/libs/vue/vue.global.js"></script>
+  <!-- vuex -->
+  <script src="/resource/libs/vuex/vuex.global.js"></script>
+  <!-- vue-router -->
+  <script src="/resource/libs/vue-router/vue-router.global.js"></script>
+  <!-- requirejs -->
+  <script src="/resource/libs/requirejs/require.min.js"></script>
+  <script>
+    define('Vue', [], function () {
+      return Vue
+    })
+    define('Vuex', [], function () {
+      return Vuex
+    })
+    define('VueRouter', [], function () {
+      return VueRouter
+    })
+    require.config({
+      map: {
+        '*': {
+          // * 以下配置用于按需加载第三方库
+          // * 若第三方依赖存在全局变量的，在路径后面加上：#变量名
+          // * 用于给编译器识别当iife时能正确输出引用
+          lodash: '/resource/libs/lodash/lodash.min.js#_',
+          moment: '/resource/libs/moment/moment.min.js',
+          vue: 'Vue',
+          vuex: 'Vuex',
+          'vue-router': 'VueRouter',
+        },
+      },
+    })(['/pages/js/index.js'])
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but brisky doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
