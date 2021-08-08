@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@brisky/vue-cli-plugin-pack": {
+      "signature": "0f03f01012bc445f4fe6f387ad83d6d5",
+      "file": true
+    }
+  }
+}

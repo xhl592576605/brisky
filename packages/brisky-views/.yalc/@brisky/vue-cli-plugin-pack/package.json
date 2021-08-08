@@ -1,0 +1,40 @@
+{
+  "name": "@brisky/vue-cli-plugin-pack",
+  "version": "0.0.0",
+  "description": "@brisky/vue-cli-plugin-pack",
+  "main": "dist/brisky-vue-cli-plugin-pack.cjs.js",
+  "unpkg": "dist/brisky-vue-cli-plugin-pack.global.js",
+  "jsdelivr": "dist/brisky-vue-cli-plugin-pack.global.js",
+  "module": "dist/brisky-vue-cli-plugin-pack.esm-bundler.js",
+  "umd": "dist/brisky-vue-cli-plugin-pack.umd.js",
+  "types": "dist/brisky-vue-cli-plugin-pack.d.ts",
+  "outputName": "BriskyPackageTemplate",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"src/**\" --fix  --ext .js，.jsx，.ts，.tsx --config .eslintrc.js ",
+    "build": "npm run \"build:ts\" && npm run build:dts",
+    "build:ts": "rollup -c rollup.config.js",
+    "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-vue-cli-plugin-pack.d.ts ",
+    "show": "yalc installations show",
+    "async": "npm run build && yalc push --no-scripts",
+    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xhl592576605/brisky.git"
+  },
+  "keywords": [],
+  "files": [
+    "dist/*.js",
+    "dist/brisky-vue-cli-plugin-pack.d.ts",
+    "README.md"
+  ],
+  "author": "brisky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xhl592576605/brisky/issues"
+  },
+  "homepage": "https://github.com/xhl592576605/brisky#readme",
+  "dependencies": {},
+  "yalcSig": "0f03f01012bc445f4fe6f387ad83d6d5"
+}
