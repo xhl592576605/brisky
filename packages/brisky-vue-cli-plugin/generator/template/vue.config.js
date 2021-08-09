@@ -2,18 +2,11 @@ module.exports = {
   devServer: {
     port: 3000, // * 开发端口
     historyApiFallback: {
-      rewrites: [{
-        from: '/admin/*',
-        to: '/pages/admin.html'
-      },
-      {
-        from: '/mobile/*',
-        to: '/pages/mobile.html'
-      },
-      {
-        from: '.*',
-        to: '/pages/index.html'
-      }
+      rewrites: [
+        {
+          from: '.*',
+          to: '/pages/index.html'
+        }
       ],
       htmlAcceptHeaders: ['text/html']
     },
@@ -31,5 +24,9 @@ module.exports = {
   // * babel转译兼容
   transpileDependencies: [],
   // * webpack配置
-  configureWebpack: {}
+  configureWebpack: {},
+  // @brisky/vue-cli-plugin-pack 无法删除app入口，从这边删除，使用view.conf.ts 作为入口
+  chainWebpack (webpackConf) {
+    webpackConf.entryPoints.delete('app')
+  }
 }
