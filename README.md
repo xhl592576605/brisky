@@ -10,6 +10,36 @@
 	6. 一键式的cli命令
 ## 文档地址
 [文档地址](https://xhl592576605.github.io/brisky-docs/)
+
+## 项目运行
+> 项目使用yarn命名运行
+### 前置
+```bash
+npm install yarn -g # 安装yarn，如果已安装请忽略
+yarn config get registry # 查询包源配置
+yarn config set registry https://registry.npm.taobao.org/ # 更改包源 
+```
+### 首次
+```bash
+yarn # 安装依赖
+```
+### 后续 （已有下载过以前的版本）
+```bash
+yarn run clean # 删除所有node_modules 或者自己文件夹删除
+yarn # 安装依赖
+```
+### 编译类库
+```bash
+yarn run util:build # 工具库
+yarn run api:build # api库
+yarn run eventbus:build # 事件总线库
+yarn run core:build # 核心库
+```
+### 运行项目
+```bash
+yarn run views:serve # 组件库-开发
+yarn run views:build # 组件库-编译
+```
 ### lerna管理
 - `lerna bootstrap`	安装依赖
   - `– --production --no-optional`	指定npm client的参数
@@ -39,6 +69,3 @@
 - `lerna link`	链接互相引用的库
 - `lerna create`	新建package
 - `lerna publish`	发布
-
-# yalc 管理各个类库的link
-> https://segmentfault.com/a/1190000039658156

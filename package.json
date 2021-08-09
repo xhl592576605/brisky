@@ -1,6 +1,28 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": {
+    "nohoist": [
+      "**/@vue/**",
+      "**/core-js/**"
+    ],
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "docs:dev": "lerna run --stream --scope @brisky/docs docs:dev",
+    "docs:build": "lerna run --stream --scope @brisky/docs docs:build",
+    "docs:deploy": "lerna run --stream --scope @brisky/docsdeploy",
+    "util:build": "lerna run --stream --scope @brisky/util build",
+    "api:build": "lerna run --stream --scope @brisky/api build",
+    "eventbus:build": "lerna run --stream --scope @brisky/eventbus build",
+    "core:build": "lerna run --stream --scope @brisky/core build",
+    "views:serve": "lerna run --stream --scope @brisky/views brisky:serve",
+    "views:build": "lerna run --stream --scope @brisky/views brisky:build"
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   }

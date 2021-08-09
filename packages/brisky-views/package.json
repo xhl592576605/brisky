@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve -v ./views.conf.ts -d",
-    "build": "vue-cli-service build --no-clean -v ./views.conf.ts ",
+    "brisky:serve": "vue-cli-service serve -v packages/brisky-views/views.conf.ts -t  packages/brisky-views/public/pages/index.html -d",
+    "brisky:build": "vue-cli-service build --no-clean -v packages/brisky-views/views.conf.ts -t  packages/brisky-views/public/pages/index.html",
+    "serve": "vue-cli-service serve -v views.conf.ts -d",
+    "build": "vue-cli-service build --no-clean -v views.conf.ts ",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -12,7 +14,7 @@
     "vue": "^3.0.4"
   },
   "devDependencies": {
-    "@brisky/vue-cli-plugin-pack": "file:.yalc/@brisky/vue-cli-plugin-pack",
+    "@brisky/vue-cli-plugin-pack": "^0.0.0",
     "@types/lodash": "^4.14.172",
     "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.15.1",

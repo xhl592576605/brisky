@@ -160,8 +160,8 @@ module.exports = (api, vueConf) => {
     webpackConf.module.rules.delete("docs")
     webpackConf.module.rule("images").use("url-loader").loader("url-loader").tap(e =>
       Object.assign(e, {
-        limit: 1024 * limit,
-        name: '[name].[ext]'
+        limit: 1024 * limit
+        // name: '[name].[ext]'
       }))
     !isDevelopment && webpackConf.optimization.minimize(minimize)
     !isDevelopment && webpackConf.performance.maxAssetSize(1048576).maxEntrypointSize(1048576)
