@@ -4,8 +4,7 @@
   "description": "@brisky/vue-cli-plugin-pack",
   "main": "index.js",
   "outputName": "BriskyPackageTemplate",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xhl592576605/brisky.git"
@@ -17,10 +16,14 @@
     "url": "https://github.com/xhl592576605/brisky/issues"
   },
   "homepage": "https://github.com/xhl592576605/brisky#readme",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "commander": "^8.1.0",
-    "@vue/cli-shared-utils":"^5.0.0-beta.2"
+    "@vue/cli-shared-utils": "^5.0.0-beta.2",
+    "webpack-chain": "^6.5.1",
+    "webpack": "^5.22.0"
+  },
+  "peerDependencies": {
+    "@vue/cli-service": "^3.0.0 || ^4.0.0 || ^5.0.0-0"
   }
 }

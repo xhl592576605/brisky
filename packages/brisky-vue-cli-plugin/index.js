@@ -49,8 +49,9 @@ program.args[1] & process.argv.pop()
 module.exports = (api, vueConf) => {
   debug && (done('views:'), console.log(views))
   api.chainWebpack(webpackConf => {
-    const isDevelopment = "development" === process.env.NODE_ENV
+    // eslint-disable-next-line
     webpackConf.entryPoints.delete('app');
+    const isDevelopment = "development" === process.env.NODE_ENV;
     (function addEntry (views) {
       Object.entries(views).forEach(([key, value]) => {
         '!' !== key[0] && (key = key.replace(/[!$]/, ''))
@@ -64,6 +65,15 @@ module.exports = (api, vueConf) => {
     if (views && webpackConf.entryPoints.length === 0) {
       error(`【${options.views}】中未匹配到任何views`)
     }
+    // webpackConf.plugin('delete_entry').use(class {
+    //   apply = (compiler) => {
+    //     delete compiler.entries['app']
+    //     console.log(compiler)
+    //     compiler.hooks.entryOption.tap('delete_entry', (context, entry) => {
+    //       console.log(context)
+    //     })
+    //   }
+    // })
 
     const htmlStr = fs.readFileSync(path.resolve(process.env.INIT_CWD, template), 'utf-8')
     const reg = /(?<=require\.config\()([\s\S]*?)(?=\))/
@@ -97,9 +107,9 @@ module.exports = (api, vueConf) => {
     }))
 
     !isDevelopment && !force && (webpackConf.plugin('differ').use(class {
-      apply = (_webpackConf) => {
+      apply = (compiler) => {
         const fsExtra = require('fs-extra')
-        _webpackConf.hooks.emit.tap('differ', conf => {
+        compiler.hooks.emit.tap('differ', conf => {
           log('\n')
           let count = 0
           let assets = Object.entries(conf.assets).filter(([key,]) => {
@@ -160,8 +170,8 @@ module.exports = (api, vueConf) => {
     webpackConf.module.rules.delete("docs")
     webpackConf.module.rule("images").use("url-loader").loader("url-loader").tap(e =>
       Object.assign(e, {
-        limit: 1024 * limit
-        // name: '[name].[ext]'
+        limit: 1024 * limit,
+        name: '[name].[ext]'
       }))
     !isDevelopment && webpackConf.optimization.minimize(minimize)
     !isDevelopment && webpackConf.performance.maxAssetSize(1048576).maxEntrypointSize(1048576)
