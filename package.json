@@ -20,6 +20,7 @@
     "api:build": "lerna run --stream --scope @brisky/api build",
     "eventbus:build": "lerna run --stream --scope @brisky/eventbus build",
     "core:build": "lerna run --stream --scope @brisky/core build",
+    "cli:build": "lerna run --stream --scope @brisky/cli build",
     "views:serve": "lerna run --stream --scope @brisky/views brisky:serve",
     "views:build": "lerna run --stream --scope @brisky/views brisky:build"
   },
