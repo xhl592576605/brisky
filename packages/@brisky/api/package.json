@@ -1,23 +1,24 @@
 {
-  "name": "@brisky/cli",
+  "name": "@brisky/api",
   "version": "0.0.0",
-  "description": "@brisky/cli",
-  "main": "dist/brisky-cli.cjs.js",
-  "unpkg": "dist/brisky-cli.global.js",
-  "jsdelivr": "dist/brisky-cli.global.js",
-  "module": "dist/brisky-cli.esm-bundler.js",
-  "umd": "dist/brisky-cli.umd.js",
-  "types": "dist/brisky-cli.d.ts",
-  "outputName": "BriskyPackageTemplate",
+  "description": "@brisky/api",
+  "main": "dist/brisky-api.cjs.js",
+  "unpkg": "dist/brisky-api.global.js",
+  "jsdelivr": "dist/brisky-api.global.js",
+  "module": "dist/brisky-api.esm-bundler.js",
+  "umd": "dist/brisky-api.umd.js",
+  "types": "dist/brisky-api.d.ts",
+  "outputName": "BriskyApi",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**\" --fix  --ext .js，.jsx，.ts，.tsx --config .eslintrc.js ",
     "build": "npm run \"build:ts\" && npm run build:dts",
     "build:ts": "rollup -c rollup.config.js",
-    "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-cli.d.ts ",
+    "build:dts": "api-extractor run --local --verbose && tail -n +1 src/globalExtensions.ts >> dist/brisky-api.d.ts ",
     "show": "yalc installations show",
     "async": "npm run build && yalc push --no-scripts",
-    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\""
+    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\"",
+    "postinstall": "brisky-cli copy  --to public/resource/libs/@brisky/api"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
   "keywords": [],
   "files": [
     "dist/*.js",
-    "dist/brisky-cli.d.ts",
+    "dist/brisky-api.d.ts",
     "README.md"
   ],
   "author": "brisky",
@@ -57,12 +58,12 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "@brisky/cli": "^0.0.0"
   },
   "dependencies": {
-    "cac": "^6.7.3"
-  },
-  "bin": {
-    "brisky": "dist/brisky-cli.cjs.js"
+    "@brisky/util": "^0.0.0",
+    "axios": "^0.21.1",
+    "js-cookie": "^2.2.1"
   }
 }

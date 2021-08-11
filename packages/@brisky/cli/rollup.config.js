@@ -8,7 +8,8 @@ import json from '@rollup/plugin-json'
 const pkg = require('./package.json')
 const name = pkg.name
 
-const banner = `/*!
+const banner = `#!/usr/bin/env 
+  /*!
   * ${pkg.name} v${pkg.version}
   * (c) ${new Date().getFullYear()} brisky-package-template
   * @license MIT
@@ -106,7 +107,8 @@ function createConfig (format, output, plugins = []) {
   hasTSChecked = true
 
   const external = [
-   'lodash'
+   'lodash',
+   'cac'
   ]
 
   const nodePlugins = [resolve(), commonjs()]

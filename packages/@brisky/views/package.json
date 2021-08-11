@@ -1,6 +1,7 @@
 {
   "name": "@brisky/views",
   "version": "0.0.0",
+  "briskySystem": true,
   "private": true,
   "scripts": {
     "brisky:serve": "vue-cli-service serve -v packages/brisky-views/views.conf.ts -t  packages/brisky-views/public/pages/index.html -d",
@@ -10,6 +11,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@brisky/api": "^0.0.0",
     "core-js": "^3.8.3",
     "vue": "^3.0.4"
   },
