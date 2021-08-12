@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@brisky/api": "0.0.0",
+    "@brisky/core": "0.0.0",
     "@brisky/eventbus": "0.0.0",
     "@brisky/util": "0.0.0",
     "core-js": "^3.8.3",
