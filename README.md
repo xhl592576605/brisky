@@ -37,8 +37,23 @@ yarn run core:build # 核心库
 ```
 ### 运行项目
 ```bash
+# 需要单独执行“对于各个库的连接单独引用”的bash 再运行
 yarn run views:serve # 组件库-开发
 yarn run views:build # 组件库-编译
+```
+
+### 对于各个库的连接单独引用
+``` bash
+# 因为@brisky/views 类似的vue项目，对于在本仓储这边，添加本仓储的引用需要按照如下规则，是因为这边会进行js的复制，以便直接引用
+# 是啥原因：可以参考@brisky/views 的public/index.html
+
+# 已@brisky/views 为例，它需要api,eventbus,core 这3个库，那因为都是本仓储的，所以按照规则
+
+# 将@brisky/api添加到@brisky/views 当中 @0.0.0 是因为没有publish或者本地 这样子才可以安装成功
+yarn workspace @brisky/views  add @brisky/api@0.0.0 
+yarn workspace @brisky/views  add @brisky/eventbus@0.0.0 
+yarn workspace @brisky/views  add @brisky/core@0.0.0 
+
 ```
 ### lerna管理
 - `lerna bootstrap`	安装依赖

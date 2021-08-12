@@ -16,10 +16,10 @@ cli.command('copy', 'copy dist to resouce')
     if (briskySystem) {
       const from = _options.from ? path.resolve(process.cwd(), _options.from) : path.resolve(process.cwd(), './dist')
       const to = path.resolve(root, _options.to)
-      fs.ensureDir(from).then(() => {
+      fs.ensureDir(to).then(() => {
         fs.copySync(from, to, {
           filter: function (src: string) {
-            return !src.includes('.d.ts') && !src.includes('.js.map') && !src.includes('src') && !src.includes('@brisky')
+            return !src.includes('.d.ts') && !src.includes('.js.map')
           }
         })
         fs.removeSync(path.resolve(to, 'src'))

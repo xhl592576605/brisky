@@ -23,6 +23,20 @@
   <script src="/resource/libs/vuex/vuex.global.js"></script>
   <!-- vue-router -->
   <script src="/resource/libs/vue-router/vue-router.global.js"></script>
+  <!-- lodash - 工具库 -->
+  <script src="/resource/libs/lodash/lodash.min.js"></script>
+  <!-- axios -->
+  <script src="/resource/libs/axios/axios.min.js"></script>
+  <!-- js-cookie -->
+  <script src="/resource/libs/js-cookie/js.cookie.js"></script>
+  <!--brisky/util-->
+  <script src="/resource/libs/@brisky/util/brisky-util.global.js"></script>
+  <!--brisky/eventbus-->
+  <script src="/resource/libs/@brisky/eventbus/brisky-eventbus.global.js"></script>
+  <!--brisky/api-->
+  <script src="/resource/libs/@brisky/api/brisky-api.global.js"></script>
+  <!--brisky/core-->
+  <script src="/resource/libs//@brisky/core/brisky-core.global.js"></script>
   <!-- requirejs -->
   <script src="/resource/libs/requirejs/require.min.js"></script>
   <script>
@@ -35,17 +49,33 @@
     define('VueRouter', [], function () {
       return VueRouter
     })
+    define('BriskyUtil', [], function () {
+      return BriskyUtil
+    })
+    define('BriskyApi', [], function () {
+      return BriskyApi
+    })
+    define('BriskyEventBus', [], function () {
+      return BriskyEventBus
+    })
+    define('BriskyCore', [], function () {
+      return BriskyCore
+    })
     require.config({
       map: {
         '*': {
           // * 以下配置用于按需加载第三方库
           // * 若第三方依赖存在全局变量的，在路径后面加上：#变量名
           // * 用于给编译器识别当iife时能正确输出引用
-          lodash: '/resource/libs/lodash/lodash.min.js#_',
-          moment: '/resource/libs/moment/moment.min.js',
           vue: 'Vue',
           vuex: 'Vuex',
           'vue-router': 'VueRouter',
+          lodash: '/resource/libs/lodash/lodash.min.js#_',
+          '@brisky/util': '/resource/libs/@brisky/util/brisky-util.global.js#BriskyUtil',
+          '@brisky/api': '/resource/libs/@brisky/util/brisky-api.global.js#BriskyApi',
+          '@brisky/eventbus': '/resource/libs/@brisky/util/brisky-eventbus.global.js#BriskyEventBus',
+          '@brisky/core': '/resource/libs/@brisky/util/brisky-core.global.js#BriskyCore',
+
         },
       },
     })(['/pages/js/index.js'])

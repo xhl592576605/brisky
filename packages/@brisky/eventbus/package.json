@@ -17,7 +17,8 @@
     "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-eventbus.d.ts ",
     "show": "yalc installations show",
     "async": "npm run build && yalc push --no-scripts",
-    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\""
+    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\"",
+    "postinstall": "brisky-cli copy  --to public/resource/libs/@brisky/eventbus"
   },
   "repository": {
     "type": "git",
@@ -59,7 +60,8 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "@brisky/cli": "^0.0.0"
   },
   "dependencies": {
     "@brisky/util": "^0.0.0",

@@ -4,14 +4,16 @@
   "briskySystem": true,
   "private": true,
   "scripts": {
-    "brisky:serve": "vue-cli-service serve -v packages/brisky-views/views.conf.ts -t  packages/brisky-views/public/pages/index.html -d",
-    "brisky:build": "vue-cli-service build --no-clean -v packages/brisky-views/views.conf.ts -t  packages/brisky-views/public/pages/index.html",
+    "brisky:serve": "vue-cli-service serve -v packages/@brisky/views/views.conf.ts -t  packages/@brisky/views/public/pages/index.html -d",
+    "brisky:build": "vue-cli-service build --no-clean -v packages/@brisky/views/views.conf.ts -t  packages/@brisky/views/public/pages/index.html",
     "serve": "vue-cli-service serve -v views.conf.ts -d",
     "build": "vue-cli-service build --no-clean -v views.conf.ts ",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@brisky/api": "^0.0.0",
+    "@brisky/api": "0.0.0",
+    "@brisky/eventbus": "0.0.0",
+    "@brisky/util": "0.0.0",
     "core-js": "^3.8.3",
     "vue": "^3.0.4"
   },

@@ -17,7 +17,8 @@
     "build:dts": "api-extractor run --local --verbose && tail -n +5 src/globalExtensions.ts >> dist/brisky-util.d.ts ",
     "show": "yalc installations show",
     "async": "npm run build && yalc push --no-scripts",
-    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\""
+    "watch": "nodemon --ignore dist/ --ignore node_modules/ --watch src/ -C -e ts,tsx,scss -x \"npm run async\"",
+    "postinstall": "brisky-cli copy  --to public/resource/libs/@brisky/util"
   },
   "repository": {
     "type": "git",
