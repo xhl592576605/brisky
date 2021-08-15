@@ -51,7 +51,11 @@
       "ecmaVersion": 2020
     },
     "rules": {
-      "@typescript-eslint/no-var-requires": 0
+      "@typescript-eslint/no-var-requires": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint\no-empty-function": 0,
+      "no-debugger": 0,
+      "no-console": 0
     }
   },
   "browserslist": [

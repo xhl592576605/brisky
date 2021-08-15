@@ -34,7 +34,7 @@ export default class CoreXhrRewritePlugin implements BriskyPlugin {
     }] 
      */
     $core.$lifeCycle.onXhrOpen.$on(lifeOpt.onXhrOpenOpt, (xhr: any) => {
-      const { proxy } = $core.$frame
+      const { proxy } = $core.frame
       let { method, url } = xhr
       let matched
       // 匹配

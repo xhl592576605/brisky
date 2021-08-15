@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-07-08 21:52:12
+ * @lastEditTime: 2021-08-15 12:56:12
  */
 import { Router } from "vue-router"
 import core from "src/core"
@@ -71,7 +71,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
 
     // 初始化token refresh_token
     $core.$lifeCycle.awaitCoreReady.$on(lifeOpt.awaitCoreReadyOpt, async ($core: core) => {
-      this.sysId = this.sysId || $core.$frame.sysId
+      this.sysId = this.sysId || $core.frame.sysId
       const sign = `${this.sysId}_${location.port}`
       this.tokenSigner = new Signer({ sign, name: 'access_token' })
       this.refreshTokenSigner = new Signer({ sign, name: 'refresh_token' })
@@ -147,7 +147,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
       if (xhr.readyState === 4) {
         const response = typeof xhr.response === 'string' ? JSON.parse(xhr.response) : xhr.response
         const code = response.error.errorCode
-        const message = $core.$frame.messages[code]
+        const message = $core.frame.messages[code]
         const status = { code, message }
         if (!this.lock) {
           // 标记一个状态，防止并发接口时重复调用注销方法
@@ -169,15 +169,15 @@ export default class CoreTokenPlugin implements BriskyPlugin {
    * @returns 
    */
   regularCheck($core: core) {
-    const interval = $core.$frame.tokenInterval || 5 // 5分钟刷新确认一次，该属性暂不开放
+    const interval = $core.frame.tokenInterval || 5 // 5分钟刷新确认一次，该属性暂不开放
     if (this.timer) return
-    this.timer = window.setInterval(() => {
+    $core.TOKEN && (this.timer = window.setInterval(() => {
       const payload = parseToken(this.ACCESS_TOKEN)
       const deadline = payload.exp * 1000 // token过期时间
       const diff = (deadline - new Date().valueOf()) / 1000 / 60
       if (diff > interval) return // 临近token的过期时间时，才进行token预刷新操作
       this.refresh($core)
-    }, interval * 60 * 1000)
+    }, interval * 60 * 1000))
   }
 
   cancelRegularCheck() {
@@ -190,7 +190,7 @@ export default class CoreTokenPlugin implements BriskyPlugin {
    */
   refresh($core: core) {
     return $core?.$apiService?.$fetchData('system.refreshToken').then((res: any) => {
-      const token = $core.$dataMatch.$matchData4String($core.$frame.matched?.data || '@data.data@', res)
+      const token = $core.$dataMatch.$matchData4String($core.frame.matched?.data || '@data.data@', res)
       token && this.write(token)
     }).catch((err: any) => {
       log('刷新token失败', err)

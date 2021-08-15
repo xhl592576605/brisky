@@ -21,12 +21,12 @@ yarn config set registry https://registry.npm.taobao.org/ # 更改包源
 ```
 ### 首次
 ```bash
-yarn # 安装依赖
+yarn --ignore-scripts # 安装依赖
 ```
 ### 后续 （已有下载过以前的版本）
 ```bash
 yarn run clean # 删除所有node_modules 或者自己文件夹删除
-yarn # 安装依赖
+yarn  --ignore-scripts # 安装依赖
 ```
 ### 编译类库
 ```bash

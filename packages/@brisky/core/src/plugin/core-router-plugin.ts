@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 18:52:17
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-27 21:16:57
+ * @lastEditTime: 2021-08-14 16:32:23
  */
 
 import core from "src/core"
@@ -25,7 +25,7 @@ export default class CoreRouterPlugin implements BriskyPlugin {
     //定义配置路由
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
       const $router = $core.$router as Router
-      const { login = {}, routes = [] } = $core.$frame
+      const { login = {}, routes = [] } = $core.frame
       const loginRoute = {
         path: login.path,
         name: login.name,
@@ -41,7 +41,7 @@ export default class CoreRouterPlugin implements BriskyPlugin {
         component: 'exception-404'
       }
       const { options } = $router
-      options.routes = [notFoundRoute, loginRoute]
+      options.routes = [notFoundRoute, loginRoute].filter(r => r.path)
         .concat(options.routes as any[])
         .concat(routes)
         .map((route: any) => {

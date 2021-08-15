@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-08 21:56:08
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-27 00:06:03
+ * @lastEditTime: 2021-08-15 10:54:20
  */
 import _ from 'lodash'
 import { App, Component, createApp, ref } from 'vue'
@@ -33,6 +33,7 @@ export default class Core {
   public readonly appOpts = {}
   public $el: string = '#app'
   public $vm?: App
+  public render: Function | undefined
   public $store: Store<any> | null = null
   public $router: Router | null = null
   public $eventServcie = new EventBusService()
@@ -72,7 +73,7 @@ export default class Core {
     await this.$lifeCycle.awaitGetSystem.$emit(lifeOpt.awaitGetSystemOpt, this)
     this.$lifeCycle.afterGetSystem.$emit(lifeOpt.afterCreateAppOpt, this)
 
-    this.defineDynamicProxy('$frame', Object.assign(frame, window.$frame || {}))
+    this.defineDynamicProxy('frame', Object.assign(frame, window.$frame || {}))
 
     this.$lifeCycle.beforeCoreReady.$emit(lifeOpt.beforeCoreReadyOpt, this)
     await this.$lifeCycle.awaitCoreReady.$emit(lifeOpt.awaitCoreReadyOpt, this)
@@ -156,7 +157,7 @@ export default class Core {
   public async login(data: any) {
     this.$lifeCycle.beforeLogin.$emit(lifeOpt.beforeLoginOpt, this)
     const res = await this.$apiService?.$fetchData('system.login', data)
-    const token = this.$dataMatch.$matchData4String(this.$frame.matched?.data || '@data.data@', res)
+    const token = this.$dataMatch.$matchData4String(this.frame.matched?.data || '@data.data@', res)
     this.$lifeCycle.afterLogin.$emit(lifeOpt.afterLoginOpt, token)
   }
 
@@ -217,13 +218,16 @@ export default class Core {
   public loadComponent(compKey: any, configKey: any, option: any = {}) {
     let view
     if (typeof compKey === 'string' && /\.js$/.test(compKey) === false) {
-      const alias = this.$alias
+      const alias = this.alias
       view = alias[compKey]
       if (!view) {
         console.error(`【alias】中未匹配到组件：${compKey}`)
       }
     } else {
       view = compKey
+    }
+    if (!view) {
+      console.error(`并未配置【compKey】，无法加载组件`)
     }
     return loadComponent(view, configKey, option)
   }
@@ -237,5 +241,6 @@ export default class Core {
     this.$store = createStore(option.store as StoreOptions<any> || {})
     this.$router = createRouter(option.routers as RouterOptions || defaultRouter)
     this.$apiService = new ApiService(option.apiServiceOpt as ApiServiceOpt || {})
+    this.render = option.render
   }
 }

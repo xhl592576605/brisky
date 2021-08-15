@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-19 17:20:04
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-27 01:13:44
+ * @lastEditTime: 2021-08-15 10:56:11
  */
 
 
@@ -36,8 +36,9 @@ export default class CoreSystemPlugin implements BriskyPlugin {
 
     // 定义$system 别名
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
-      $core.defineDynamicProxy('$system', $core.$frame)
-      $core.defineDynamicProxy('$alias', $core.$frame?.alias || {})
+      $core.defineDynamicProxy('system', $core.frame)
+      $core.defineDynamicProxy('alias', $core.frame?.alias || {})
+      $core.defineDynamicProxy('theme', $core.frame?.theme || 'light')
     })
   }
 

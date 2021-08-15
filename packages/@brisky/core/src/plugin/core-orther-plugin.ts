@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-07-06 22:30:28
  * @lastEditors: brisky
- * @lastEditTime: 2021-07-06 22:37:55
+ * @lastEditTime: 2021-08-15 10:55:54
  */
 
 import _ from "lodash"
@@ -24,13 +24,13 @@ export default class CoreOrtherPlugin implements BriskyPlugin {
 
     // 设置标题
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
-      const title = $core.$frame.title
+      const title = $core.frame.title
       if (!title) return
       document.title = title
     })
     // 设置样式
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
-      const css = $core.$frame.css
+      const css = $core.frame.css
       if (!css) return
       const style = document.createElement('style')
       style.setAttribute('name', '$brisky-css')

@@ -60,18 +60,6 @@
     })
     window.$frame = {
       debug: true,
-      render: (h) => {
-        const {
-          $core
-        } = this
-        const {
-          meta = {}
-        } = $core.$router.currentRoute.value
-        const {
-          module
-        } = meta
-        return h(module)
-      },
       login: {
         path: '/login',
         component: '../examples/component/hello-word/index.js',
@@ -119,6 +107,18 @@
       routers: {
         history: VueRouter.createWebHashHistory(),
         routes: []
+      },
+      render: (h) => {
+        const {
+          $core
+        } = this
+        const {
+          meta = {}
+        } = $core.$router.currentRoute.value
+        const {
+          module
+        } = meta
+        return h(module)
       }
     })
 

@@ -10,7 +10,8 @@ export interface CoreOption {
   plugins?: Array<any>
   hooks?: EventObject,
   briskyPlugins?: Array<BriskyPlugin>,
-  apiServiceOpt?: ApiServiceOpt
+  apiServiceOpt?: ApiServiceOpt,
+  render?: (h: any) => void
 }
 
 export interface EventObject {

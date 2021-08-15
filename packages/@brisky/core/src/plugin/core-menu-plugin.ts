@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-21 23:24:18
  * @lastEditors: brisky
- * @lastEditTime: 2021-06-27 12:58:48
+ * @lastEditTime: 2021-08-15 10:55:10
  */
 
 import qs from 'query-string'
@@ -26,7 +26,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
 
     // 定义菜单权限等
     $core.$lifeCycle.beforeCreateApp.$on(lifeOpt.beforeCreateAppOpt, ($core: core) => {
-      $core.defineDynamicProxy('menus', $core.$frame.menu || [])
+      $core.defineDynamicProxy('menus', $core.frame.menu || [])
       $core.defineDynamicProxy('meta', $core.$router?.currentRoute?.value.meta)
       $core.defineDynamicProxy('permissions', $core.$router?.currentRoute?.value.meta?.permissions)
     })
@@ -56,7 +56,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
     //登出，菜单删除
     $core.$lifeCycle.afterLogout.$on(lifeOpt.afterLogoutOpt, () => {
       this.cache = {}
-      $core.menus = $core.$frame.menus || []
+      $core.menus = $core.frame.menus || []
     })
   }
 
@@ -233,7 +233,7 @@ export default class CoreMenuPlugin implements BriskyPlugin {
    */
   async getMenus($core: core) {
     const result = await $core.$apiService?.$fetchData('system.menu')
-    const menu = $core.$dataMatch.$matchData4String($core.$frame.matched?.menu || '@data.data@', result)
+    const menu = $core.$dataMatch.$matchData4String($core.frame.matched?.menu || '@data.data@', result)
     return menu
   }
 

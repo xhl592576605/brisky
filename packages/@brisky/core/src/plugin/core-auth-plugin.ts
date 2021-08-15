@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-06-25 21:14:24
  * @lastEditors: brisky
- * @lastEditTime: 2021-07-08 21:58:11
+ * @lastEditTime: 2021-08-15 10:54:56
  */
 
 import _ from "lodash"
@@ -31,15 +31,15 @@ export default class CoreAuthPlugin implements BriskyPlugin {
 
     // 登录完跳转指定页面 一般是“/”
     $core.$lifeCycle.afterLogin.$on(lifeOpt.afterLoginOpt, () => {
-      const { root } = $core.$frame
+      const { root } = $core.frame
       $core.$router?.push(typeof root === 'function' ? root($core) : root)
     })
 
     // 登出时跳转登录页面
     $core.$lifeCycle.afterLogout.$on(lifeOpt.afterLogoutOpt, () => {
-      const { $router, $vm, $frame = {} } = $core
+      const { $router, $vm, frame = {} } = $core
       if ($vm) {
-        const { login = {} } = $frame
+        const { login = {} } = frame
         const { path } = login
         path && $router?.push(path).catch(() => { }) // ditto
       } else {
@@ -91,7 +91,7 @@ export default class CoreAuthPlugin implements BriskyPlugin {
           next()
         }
       } else {
-        $core.loginout({ code: 10000, message: $core.$frame?.messages[20000] })
+        $core.loginout({ code: 10000, message: $core.frame?.messages[20000] })
         next(false)
       }
     })
@@ -109,14 +109,14 @@ export default class CoreAuthPlugin implements BriskyPlugin {
    */
   isAuthorizedPath(to: RouteLocationNormalized, $core: core) {
     const path = to.path
-    const { $frame: { login, authorized = [] }, $router } = $core
+    const { frame: { login, authorized = [] }, $router } = $core
     const routes = ($router as Router).getRoutes()
     return (
       // * 登录路由必须免登录
       login?.path === path ||
-      // $frame.routes && router.js#routes
+      // frame.routes && router.js#routes
       routes.some((route) => route.path === path && ((route as any).meta.authorized)) ||
-      // $frame.authorized = [] 包含路径
+      // frame.authorized = [] 包含路径
       authorized && authorized.some((val: string) => val === path)
     )
   }
