@@ -4,17 +4,17 @@ module.exports = {
     '$pages/js/index.js': './src/main.ts',
   },
   layout: {
-    'resource/libs/@brisky/views/layout-spa/index.js': './src/components/layout-spa',
+    'views/layout-spa/index.js': './src/components/layout-spa/index.tsx',
   },
   vessel: {
-    'resource/libs/@brisky/views/vessel-blank/index.js': './src/components/vessel-blank',
+    'views/vessel-blank/index.js': './src/components/vessel-blank/index.tsx',
   },
   exception: {
-    'resource/libs/@brisky/views/exception-501/index.js': './src/components/exception-501',
-    'resource/libs/@brisky/views/exception-404/index.js': './src/components/exception-404'
+    'views/exception-501/index.js': './src/components/exception-501/index.tsx',
+    'views/exception-404/index.js': './src/components/exception-404/index.tsx'
   },
   login: {
-    'resource/libs/@brisky/views/login/index.js': './src/components/login',
+    'views/login/index.js': './src/components/login/index.tsx',
 
   }
 }
