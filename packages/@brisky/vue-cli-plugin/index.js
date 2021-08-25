@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const { Command } = require('commander')
 const { done, log, warn, info, error } = require("@vue/cli-shared-utils")
+const { option } = require('commander')
 const pkg = require(path.resolve(process.env.INIT_CWD, './package.json'))
 const program = new Command()
 program
@@ -14,6 +15,7 @@ program
   .option('--watch', '监听文件变化')
   .option("--report", "生成报告文件")
   .option('--no-clean')
+  .option('--no-mock')
   .option('--mode')
   .option('-d --debug', '显示debug信息')
   .parse(process.argv)
@@ -25,6 +27,7 @@ const limit = options.limit
 const minimize = options.minimize
 const debug = options.debug
 const force = options.force
+const mock = options.mock
 const views = (function getViews (views, agrs1) {
   const _views = {}
   Object.entries(views).forEach(([key, value]) => {
@@ -48,9 +51,11 @@ program.args[1] & process.argv.pop()
 
 module.exports = (api, vueConf) => {
   debug && (done('views:'), console.log(views))
+  mock && (vueConf.devServer.before = (app, server, compiler) => {
+    require('./server.js')(app, server, compiler)
+  })
   api.chainWebpack(webpackConf => {
-    // eslint-disable-next-line
-    webpackConf.entryPoints.delete('app');
+    webpackConf.entryPoints.delete('app')
     const isDevelopment = "development" === process.env.NODE_ENV;
     (function addEntry (views) {
       Object.entries(views).forEach(([key, value]) => {

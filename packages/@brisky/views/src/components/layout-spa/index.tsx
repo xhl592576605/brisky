@@ -5,7 +5,7 @@
  * @email: 592576605@qq.com
  * @date: 2021-08-14 11:29:29
  * @lastEditors: brisky
- * @lastEditTime: 2021-08-15 16:43:06
+ * @lastEditTime: 2021-08-25 20:51:28
  */
 import { defineComponent } from 'vue'
 
@@ -13,6 +13,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'LayoutSpa',
   props: {
+  },
+  mounted() {
   },
   render() {
     const $slots = this.$slots

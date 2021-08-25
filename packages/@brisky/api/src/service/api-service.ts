@@ -80,7 +80,7 @@ export default class ApiService {
       const { option, $dataCheck } = this
       const createToken = () => {
         const { getToken, tokenKey } = option
-        if ($dataCheck.$isFunction(getToken)) {
+        if (getToken && $dataCheck.$isFunction(getToken)) {
           return getToken()
         }
         if ($dataCheck.$isString(tokenKey)) {
@@ -144,9 +144,9 @@ export default class ApiService {
       // 配置发送请求前的拦截器 可以设置token信息
       axiosObj.interceptors.request.use(
         (config: any) => {
-          this.$dataCheck.$isFunction(beforeSetRequestHeaders) && beforeSetRequestHeaders(config)
+          beforeSetRequestHeaders && this.$dataCheck.$isFunction(beforeSetRequestHeaders) && beforeSetRequestHeaders(config)
           this.setRequestHeaders(config)
-          this.$dataCheck.$isFunction(afterSetRequestHeaders) && afterSetRequestHeaders(config)
+          afterSetRequestHeaders && this.$dataCheck.$isFunction(afterSetRequestHeaders) && afterSetRequestHeaders(config)
           return config
         },
         (error: any) => {

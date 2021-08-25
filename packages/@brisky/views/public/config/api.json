@@ -1,0 +1,12 @@
+{
+  "mock": {
+    "test": {
+      "url": "api/v1/test",
+      "author": "brisky",
+      "method": "get",
+      "params": {
+        "sign": "brisky"
+      }
+    }
+  }
+}

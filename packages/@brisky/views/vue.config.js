@@ -1,4 +1,6 @@
-module.exports = {
+import { defineConfig } from '@vue/cli-service'
+
+module.exports = defineConfig({
   devServer: {
     port: 3000, // * 开发端口
     historyApiFallback: {
@@ -24,9 +26,10 @@ module.exports = {
   // * babel转译兼容
   transpileDependencies: [],
   // * webpack配置
-  configureWebpack: {},
+  configureWebpack: {
+  },
   // @brisky/vue-cli-plugin-pack 无法删除app入口，从这边删除，使用view.conf.ts 作为入口
   chainWebpack (webpackConf) {
     webpackConf.entryPoints.delete('app')
   }
-}
+})

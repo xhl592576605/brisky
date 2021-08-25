@@ -5,6 +5,10 @@ import store from './store'
 const coreOption: CoreOption = {
   routers,
   store,
-  render
+  render,
+  apiServiceOpt: {
+    debug: true,
+    api: '/config/api.json'
+  }
 };
 ($core as core).init(coreOption)
