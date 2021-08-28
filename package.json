@@ -14,6 +14,7 @@
     "commit": "git-cz",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
+    "version": "lerna version --conventional-commits",
     "docs:dev": "lerna run --stream --scope @brisky/docs docs:dev",
     "docs:build": "lerna run --stream --scope @brisky/docs docs:build",
     "docs:deploy": "lerna run --stream --scope @brisky/docsdeploy",
@@ -25,6 +26,11 @@
     "views:serve": "lerna run --stream --scope @brisky/views brisky:serve",
     "views:build": "lerna run --stream --scope @brisky/views brisky:build"
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -32,7 +38,7 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
+    "packages/@brisky/*/src/*.ts": [
       "eslint --fix",
       "git add"
     ]
