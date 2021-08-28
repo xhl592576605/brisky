@@ -1,6 +1,6 @@
 {
   "name": "@brisky/vue-cli-plugin-pack",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "@brisky/vue-cli-plugin-pack",
   "main": "index.js",
   "outputName": "BriskyPackageTemplate",

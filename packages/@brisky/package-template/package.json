@@ -1,6 +1,6 @@
 {
   "name": "@brisky/package-template",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "@brisky/package-template",
   "main": "dist/brisky-package-template.cjs.js",
   "unpkg": "dist/brisky-package-template.global.js",

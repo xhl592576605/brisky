@@ -1,6 +1,6 @@
 {
   "name": "@brisky/util",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "@brisky/util",
   "main": "dist/brisky-util.cjs.js",
   "unpkg": "dist/brisky-util.global.js",

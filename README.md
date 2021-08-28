@@ -73,7 +73,7 @@ yarn run commit # 使用git-cz 命令选择，进行提交代码
 ### 版本发布
 
 ```bash
-yarn run version # 升级各个包的版本，生成changelog
+yarn run version # 升级各个包的版本，生成changelog,会直接提交代码到github请勿执行
 ```
 ## lerna管理
 - `lerna bootstrap`	安装依赖

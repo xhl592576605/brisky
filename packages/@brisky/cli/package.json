@@ -1,6 +1,6 @@
 {
   "name": "@brisky/cli",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "@brisky/cli",
   "main": "dist/brisky-cli.cjs.js",
   "unpkg": "dist/brisky-cli.global.js",
