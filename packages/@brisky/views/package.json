@@ -1,6 +1,6 @@
 {
   "name": "@brisky/views",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "briskySystem": true,
   "private": true,
   "scripts": {
@@ -11,15 +11,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@brisky/api": "0.0.0",
-    "@brisky/core": "0.0.0",
-    "@brisky/eventbus": "0.0.0",
-    "@brisky/util": "0.0.0",
+    "@brisky/api": "^0.0.1",
+    "@brisky/core": "^0.0.1",
+    "@brisky/eventbus": "^0.0.1",
+    "@brisky/util": "^0.0.1",
     "core-js": "^3.8.3",
     "vue": "^3.0.4"
   },
   "devDependencies": {
-    "@brisky/vue-cli-plugin-pack": "^0.0.0",
+    "@brisky/vue-cli-plugin-pack": "^0.0.1",
     "@types/lodash": "^4.14.172",
     "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
