@@ -55,7 +55,27 @@ yarn workspace @brisky/views  add @brisky/eventbus@0.0.0
 yarn workspace @brisky/views  add @brisky/core@0.0.0 
 
 ```
-### lerna管理
+
+## git提交
+- feat：新功能（feature）
+- fix：修补bug
+- docs：文档（documentation）
+- style： 格式（不影响代码运行的变动）
+- refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+- test：增加测试
+- chore：构建过程或辅助工具的变动
+
+### 提交代码
+```bash
+yarn run commit # 使用git-cz 命令选择，进行提交代码
+```
+
+### 版本发布
+
+```bash
+yarn run version # 升级各个包的版本，生成changelog
+```
+## lerna管理
 - `lerna bootstrap`	安装依赖
   - `– --production --no-optional`	指定npm client的参数
   - `–hoist`	把依赖安装到根目录的node_modules
