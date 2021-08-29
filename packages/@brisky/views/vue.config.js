@@ -1,6 +1,5 @@
-import { defineConfig } from '@vue/cli-service'
 
-module.exports = defineConfig({
+module.exports = {
   devServer: {
     port: 3000, // * 开发端口
     historyApiFallback: {
@@ -32,4 +31,4 @@ module.exports = defineConfig({
   chainWebpack (webpackConf) {
     webpackConf.entryPoints.delete('app')
   }
-})
+}
